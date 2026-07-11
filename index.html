@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.07.12 (주일)</span>
+      <span class="dot">·</span><span>은혜의 시선으로 읽기</span>
+    </div>
+    <h1 class="ref">사람의 말 vs. 하나님의 말<span class="range">시편(Psalm) 12:1–12:8</span></h1>
+    <p class="hook">
+      말이 넘쳐나는 시대, 나는 어떤 말에 발을 딛고 사는가.<br>
+      거짓과 아첨으로 가득한 세상을 탄식하다가(1–4절),<br>
+      "내가 이제 일어나겠다"는 하나님의 음성이 한가운데 놓이고(5절),<br>
+      그 말씀은 일곱 번 단련한 은처럼 순결합니다(6절).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">이 시편은 두 종류의 말을 정면으로 맞세웁니다. 사람의 말과 하나님의 말입니다.</p>
+    <p>사람의 말(2–4절)은 거짓되고, 아첨하며, 겉과 속이 다릅니다. 다윗은 "경건한 자가 끊어지며 충실한 자들이 사라진다"(1절)고 탄식합니다. 신실한 사람이 드물어진 시대, 정직하게 살면 오히려 손해 보는 것 같은 시대 — 지금 우리가 매일 느끼는 그 외로움을 3천 년 전 시인도 똑같이 느꼈습니다. 4절 "우리 입술은 우리 것이니 우리를 주관할 자 누구리요"는 하나님 없이 자기 말을 절대화하는 인간의 교만입니다. 오늘날 '내 말은 내 자유'라는 감각과 정확히 겹칩니다.</p>
+    <p>그러나 시의 무게중심은 인간의 탄식이 아니라 하나님의 응답에 있습니다. 5절에서 침묵하시던 하나님이 마침내 입을 여십니다. "내가 이제 일어나겠다." 세상이 거짓으로 아무리 시끄러워도, 판을 바꾸시는 분은 여론이나 다수가 아니라 직접 말씀하시는 하나님이십니다. 그리고 그 말씀은 "흙 도가니에 일곱 번 단련한 은"(6절)처럼 순결합니다. 사람의 말에는 불순물이 섞여 있지만, 하나님의 말씀에는 한 점의 거짓도 없습니다.</p>
+    <p>여기서 복음주의 신앙의 핵심이 드러납니다. 우리가 붙잡을 것은 흔들리는 세상의 말이 아니라, 검증된 하나님의 말씀입니다. 감정이 흔들릴 때, 다수가 다른 방향으로 갈 때, 판단의 기준을 어디에 둘 것인가 — 이 시편의 답은 분명합니다. 정제된 하나님의 말씀입니다.</p>
+    <p>그리고 7절, 이 믿음의 끝에는 확신이 있습니다. "주께서 그들을 지키사 이 세대로부터 영원까지 보존하시리이다." 경건한 자가 드문 시대에도, 저열함이 존경받는 세상(8절)에도, 하나님은 자기 백성을 반드시 지키십니다. 신자의 안전은 내가 얼마나 굳게 버티느냐가 아니라, 하나님이 붙드신다는 약속에 있습니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">이 시편은 '말씀'이라는 실 하나로 성경 전체를 꿰어 그리스도께 이릅니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>6절의 '순결한 말씀'은 구속사 안에서 인격이 되십니다. 요한복음 1장은 "말씀이 육신이 되어 우리 가운데 거하시매"라고 선언합니다(요 1:1, 14). 시편이 노래한 그 흠 없는 말씀이, 거짓으로 가득한 세상 한복판에 사람이 되어 오셨습니다. 예수님은 곧 '진리'이시고(요 14:6), 거짓의 아비인 마귀(요 8:44)와 정면으로 맞서신 분입니다.</span></li>
+      <li><span class="tag">둘째</span><span>1절 "경건한 자가 끊어졌다"는 절망은 그리스도를 예고합니다. 신실한 자가 다 사라진 세상, 하나님은 그 자리에 한 분의 참으로 신실하신 분을 보내셨습니다. 다윗이 신실한 자를 찾다 지친 그 자리에, 유일하게 온전히 신실하신 아들이 오셨습니다.</span></li>
+      <li><span class="tag">셋째</span><span>5절 "가련한 자를 위하여 내가 일어나겠다"는 하나님의 개입은 구속사의 절정에서 성취됩니다. 예수님은 눌린 자에게 자유를 선포하러 오셨고(눅 4:18), 무엇보다 죽음에서 친히 '일어나셨습니다'(부활). 하나님이 가련한 자를 위해 일어나시겠다는 그 약속이, 빈 무덤에서 완전히 이루어졌습니다.</span></li>
+      <li><span class="tag">넷째</span><span>4절의 교만은 그리스도 앞에서 뒤집힙니다. "우리를 주관할 자 누구리요"라며 제 입술을 절대화하던 인간의 혀가, 마침내 "예수 그리스도를 주라 시인하여" 하나님께 영광을 돌리게 됩니다(빌 2:9–11). 자기 말로 자기를 높이려던 인간이, 그 혀로 그리스도를 고백하는 자리로 돌아옵니다.</span></li>
+      <li><span class="tag">다섯째</span><span>7절 "영원까지 보존하시리이다"는 그리스도 안에서 확정됩니다. 예수님은 "아무도 내 손에서 빼앗을 수 없다"(요 10:28–29)고 하셨습니다. 시편의 보존 약속은 막연한 낙관이 아니라, 십자가와 부활로 값 주고 사신 백성을 끝까지 붙드시는 그리스도께 근거합니다.</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 이 시편은 다윗 한 사람의 탄식이 아니라, 거짓된 세상에서 참된 말씀 되신 그리스도를 통해 자기 백성을 구원하고 지키시는 하나님의 큰 이야기입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>표제 '스미닛'은 음악 지시어(낮은 옥타브 · 여덟 줄 악기로 추정).</li>
+        <li>구조는 대칭: 인간의 말(1–4절) → 하나님의 말(5–6절, 중심) → 보존의 확신(7–8절). 무게가 정중앙 신탁(5절)에 실립니다.</li>
+        <li>5절 '일어나(히, 쿰)'는 재판장·용사이신 하나님이 심판·구원하러 일어서시는 언어입니다.</li>
+        <li>8절은 냉정한 현실 인식으로 닫힙니다 — 순진한 낙관도 냉소도 아닌 균형.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>아첨하고 나를 부풀리는 말의 뿌리는 '내 자리를 내가 지켜야 한다'는 불안입니다. 그런데 복음은 내 자리가 이미 그리스도 안에서 확보됐다고 말합니다. 하나님이 먼저 '일어나' 구원을 이루셨습니다(5절). 그러니 아첨을 '끊는' 게 아니라, 아첨할 이유가 사라지는 것입니다.</p>
+    <ul class="apply-list">
+      <li>나를 증명하려 애쓰지 않아도 됩니다 — 이미 받아들여졌습니다.</li>
+      <li>큐티는 성과가 아니라, 거저 주신 순결한 말씀을 누리는 특권입니다(6절).</li>
+      <li>나를 지키는 건 내 안간힘이 아니라 "주께서 지키시리이다"(7절)입니다.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">나는 내 말로 내 자리를 지킬 필요가 없다.<br>하나님이 이미 나를 위해 일어나셨고, 지금도 나를 붙들고 계시기 때문이다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>요즘 내가 '나를 지키려' 부풀리거나 꾸민 말은 무엇이었나요?</li>
+      <li>하나님이 이미 나를 받아들이셨다는 사실이, 그 말버릇을 어떻게 바꿀 수 있을까요?</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 말이 가벼워진 세상에서 저를 지켜 주소서. 제 언어가 두 마음이 아니라 순전함을 따르게 하시고, 저의 신실함이 아니라 주님의 신실하심을 의지하며 오늘을 살게 하소서. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(시편 12:1–12:8). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
