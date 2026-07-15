@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.07.15 (수)</span>
+      <span class="dot">·</span><span>은혜의 시선으로 읽기</span>
+    </div>
+    <h1 class="ref">흔들리지 않는 자리<span class="range">시편(Psalm) 15:1–15:5</span></h1>
+    <p class="hook">
+      여호와여 주의 장막에 머무를 자 누구오니이까(1절).<br>
+      정직하게 행하며 마음에 진실을 말하는 자(2절).<br>
+      그의 혀로 남을 허물하지 아니하는 자(3절).<br>
+      이런 일을 행하는 자는 영원히 흔들리지 아니하리이다(5절).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">시는 질문으로 시작합니다. 그런데 그 답을 읽어 내려갈수록, 안심이 아니라 무게가 느껴집니다.</p>
+    <p>"여호와여 주의 장막에 머무를 자 누구오며 주의 성산에 사는 자 누구오니이까"(1절). 이것은 예배자가 성전에 들어가기 전 던지는 질문이자, 사실 모든 사람이 마음 깊은 곳에서 던지는 질문입니다 — 하나님 앞에 설 자격이 내게 있는가. 다윗은 즉시 답을 나열하기 시작합니다.</p>
+    <p>2–3절은 안에서 밖으로 이어지는 정직의 목록입니다. "정직하게 행하며 공의를 실천하며 그의 마음에 진실을 말하며"(2절), "그의 혀로 남을 허물하지 아니하고 그의 이웃에게 악을 행하지 아니하며 그의 이웃을 비방하지 아니하며"(3절). 마음의 진실함에서 시작해 혀의 말로, 이웃과의 관계로 퍼져나가는 이 목록은 완벽한 도덕적 이력서를 요구합니다. 오늘 이 목록 앞에 정직하게 서 본다면, 몇 줄이나 자신 있게 통과할 수 있을까요.</p>
+    <p>4–5절은 기준을 한층 더 조입니다. "그의 마음에 서원한 것은 해로울지라도 변하지 아니하며 그의 이자를 받으려고 돈을 꾸어 주지 아니하며 뇌물을 받고 무죄한 자를 해하지 아니하는 자이니." 손해를 감수하고도 약속을 지키는 것, 이익을 포기하고 가난한 자를 돕는 것 — 이것은 이상적 인간상이지, 우리 대부분의 실제 모습이 아닙니다. 그런데 바로 여기에 이 시편이 감춘 정직함이 있습니다. 시는 우리가 이 목록을 완벽히 이룰 수 있다고 말하지 않습니다. 오히려 하나님 앞에 머무를 자격이 얼마나 높은 기준인지를 드러내는 거울입니다.</p>
+    <p>그리고 5절 마지막 줄, "이런 일을 행하는 자는 영원히 흔들리지 아니하리이다." 이 약속은 완벽함의 대가가 아니라, 정직과 진실을 사랑하시는 하나님을 진심으로 사모하며 그분을 의지하는 삶에 주어지는 안정입니다. 흔들리지 않는 자리는 내 도덕적 성취가 아니라, 하나님을 향한 신뢰에서 흘러나오는 하나님의 선물입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">다윗의 도덕적 체크리스트는, 그것을 홀로 완전히 이루신 한 분을 가리킵니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>1절 "주의 장막에 머무를 자 누구오니이까"라는 질문은 그리스도 안에서 완전히 답해집니다. 오직 그리스도만이 2–5절의 목록을 완벽하게 이루신 유일한 분이십니다. "죄는 없으시니라"(히 4:15).</span></li>
+      <li><span class="tag">둘째</span><span>2절 "마음에 진실을 말하며"는 그리스도에게서 절정에 이릅니다. 예수님은 "나는 길이요 진리요 생명이니"(요 14:6)라고 선언하셨습니다. 시인이 요구받은 진실함이, 그리스도 안에서는 인격 자체로 나타납니다.</span></li>
+      <li><span class="tag">셋째</span><span>4절 "마음에 서원한 것은 해로울지라도 변하지 아니하며"는 십자가에서 완전히 성취됩니다. 그리스도는 겟세마네에서 "내 원대로 마시옵고 아버지의 원대로 하옵소서"(마 26:39) 기도하시며, 자신에게 해로운 그 길을 끝까지 지키셨습니다.</span></li>
+      <li><span class="tag">넷째</span><span>5절 "이자를 받으려고 돈을 꾸어 주지 아니하며"라는 자기희생적 나눔은, 우리를 위해 부요하신 자로서 가난하게 되신 그리스도에게서 완성됩니다(고후 8:9). 그리스도는 우리에게 값없이 자신을 내어주셨습니다.</span></li>
+      <li><span class="tag">다섯째</span><span>5절 "영원히 흔들리지 아니하리이다"는 그리스도를 반석으로 삼은 자에게 주어지는 약속입니다(마 7:24–25). 우리가 이 목록을 완벽히 이루지 못해도, 그리스도의 의를 힘입어 흔들리지 않는 반석 위에 서게 됩니다.</span></li>
+      <li><span class="tag">여섯째</span><span>이 시편의 목록 전체는 결국 우리가 이룰 수 없는 기준을 그리스도께서 대신 이루시고, 그 의를 우리에게 옷 입혀 주셨다는 사실을 가리킵니다. "하나님이 죄를 알지도 못하신 이를 우리를 대신하여 죄로 삼으신 것은 우리로 하여금 그 안에서 하나님의 의가 되게 하려 하심이라"(고후 5:21).</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 시편 15편은 하나님 앞에 설 자격에 대한 다윗의 도덕적 체크리스트가 아니라, 그 자격을 홀로 완전히 이루시고 우리를 대신해 흔들리지 않는 자리에 세워 주신 그리스도를 가리키는 이정표입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>표제 "다윗의 시"이며, 예배자가 성전(장막)에 들어가기 전 자격을 묻고 답하는 '입장 예전시' 장르에 속함.</li>
+        <li>구조는 질문(1절) → 열 가지 답변 항목(2–5절 상) → 약속(5절 하)의 단순한 3단 구성.</li>
+        <li>'장막'과 '성산'은 각각 광야 시절의 성막과 이후 시온산 성전을 동시에 가리키는 병행 표현.</li>
+        <li>목록의 항목들은 제의적 정결이 아니라 마음-혀-이웃으로 이어지는 관계적 정직함에 집중되어 있음.</li>
+        <li>5절 '흔들리지 아니하리이다'는 시편 전체에 반복되는 '견고함' 모티프와 연결됨(시 16:8, 62:2).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>이 목록 앞에서 느끼는 불안은 '내가 이 기준에 미달하니 하나님 앞에 설 수 없다'는 두려움입니다. 그러나 복음은 내가 이 목록을 완성해야 성소에 들어갈 수 있는 것이 아니라, 이 목록을 완성하신 그리스도의 의를 힘입어 이미 들어갔다는 사실에서 시작됩니다.</p>
+    <ul class="apply-list">
+      <li>오늘 제 정직하지 못한 순간을 발견해도, 그것이 저를 하나님 앞에서 쫓아내지 않습니다.</li>
+      <li>저는 제 도덕적 완성이 아니라 그리스도의 완전하심 위에 흔들리지 않고 서 있습니다.</li>
+      <li>손해를 감수하고 진실을 말하는 오늘의 작은 선택은, 자격을 얻기 위한 노력이 아니라 이미 받은 은혜에 대한 응답입니다.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">나는 이 목록을 완성해서가 아니라,<br>그것을 완성하신 분을 붙들고 있어서 흔들리지 않는다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>시편 15편의 목록 중 가장 마음에 찔리는 항목은 무엇이며, 왜 그런가요?</li>
+      <li>손해를 보더라도 약속(진실)을 지켰던 경험, 혹은 지키지 못했던 경험을 나눠보세요.</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 제 도덕적 완성이 아니라 그리스도의 의를 힘입어 주 앞에 서게 하소서. 손해를 감수하고도 진실을 말하는 용기를 주시고, 오늘도 흔들리지 않는 반석 위에 살게 하소서. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(시편 15:1–15:5). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
