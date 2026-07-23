@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.07.23 (목)</span>
+      <span class="dot">·</span><span>성전 환상</span>
+    </div>
+    <h1 class="ref">정결케 하시고, 보내시다<span class="range">이사야(Isaiah) 6:1–6:13</span></h1>
+    <p class="hook">
+      웃시야 왕이 죽던 해, 이사야는 흔들리지 않는 보좌를 본다(1–4절).<br>
+      거룩하신 이 앞에서 그가 처음 본 것은 다른 이들의 죄가 아니라 자신의 부정함이다(5절).<br>
+      숯불이 입술에 닿자, 정하여진 것이 아니라 사하여졌다는 선언이 임한다(6–7절).<br>
+      깨끗해진 그 입술이 비로소 답한다 — 내가 여기 있나이다, 나를 보내소서(8–13절).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">1–5장이 유다와 예루살렘을 향한 여섯 화(禍)로 어둠 속에 닫혔다면, 6장은 그 어둠의 근원이자 해답이 되는 하나님의 거룩하심 앞으로 우리를 데려갑니다.</p>
+    <p>1절, "웃시야 왕이 죽던 해에 내가 본즉 주께서 높이 들린 보좌에 앉으셨는데 그의 옷자락은 성전에 가득하였고." 웃시야는 유다를 52년간 다스린 강성한 왕이었습니다. 그런 왕조차 죽습니다. 나라가 흔들릴 만한 해에, 이사야는 결코 흔들리지 않는 보좌를 봅니다. 스랍들이 그 위에서 날며 서로 부르짖습니다. "거룩하다 거룩하다 거룩하다 만군의 여호와여 그의 영광이 온 땅에 충만하도다"(3절). 세 번 반복된 "거룩하다"는 히브리어에서 최상급을 나타내는 방식으로, 하나님의 거룩하심이 비교할 대상조차 없는 절대적인 것임을 선언합니다. 그 소리에 문지방 터가 흔들리고 성전에 연기가 가득 찹니다(4절) — 이것은 장식적인 환상이 아니라, 실제로 임재하시는 하나님 앞에서 세상의 모든 견고함이 얼마나 연약한지를 보여주는 장면입니다.</p>
+    <p>이 압도적인 광경 앞에서 이사야가 먼저 떠올린 것은 놀랍게도 남의 죄가 아니었습니다. 1장부터 5장까지 그는 백성의 죄를 낱낱이 고발해 왔습니다. 그러나 5절에서 그는 이렇게 외칩니다. "화로다 나여 망하게 되었도다 나는 입술이 부정한 사람이요 입술이 부정한 백성 중에 거주하면서 만군의 여호와이신 왕을 뵈었음이로다." 거룩하심 앞에 가장 먼저 드러나는 것은 타인의 허물이 아니라 자기 자신의 부정함입니다. 이사야는 선지자였고 누구보다 하나님의 말씀에 정통한 사람이었지만, 그 지식도 그를 거룩하신 이 앞에서 안전하게 지켜주지 못했습니다.</p>
+    <p>그러나 본문은 이사야를 자기 정죄 속에 버려두지 않습니다. 6–7절, "그 때에 그 스랍의 하나가 부집게로 제단에서 취한 바 핀 숯을 손에 가지고 내게로 날아와서 그것을 내 입에 대며 이르되 보라 이것이 네 입에 닿았으니 네 악이 제하여졌고 네 죄가 사하여졌느니라." 이사야는 스스로 입술을 씻지 않았습니다. 스랍이 날아왔고, 이미 제단 위에서 타고 있던 숯불이 사용되었으며, 선언은 이사야가 아닌 하늘에서 임했습니다. 심판할 수도 있었던 그 불이 오히려 정결하게 하는 불이 된 것입니다.</p>
+    <p>바로 그 정결함 위에서 8절의 부르심이 임합니다. "내가 또 주의 목소리를 들은즉 이르시되 내가 누구를 보내며 누가 우리를 위하여 갈꼬 하시니 그 때에 내가 이르되 내가 여기 있나이다 나를 보내소서 하였더니." 조건도, 협상도, 망설임도 없습니다. 그러나 9–13절에서 그 사명의 실제 내용은 결코 가볍지 않습니다. "가서 이 백성에게 이르기를 너희가 듣기는 들어도 깨닫지 못할 것이요 보기는 보아도 알지 못하리라 하고"(9절) — 그의 메시지를 듣고도 많은 이들이 스스로 마음을 완악하게 하여 돌이키지 않을 것이라는 무거운 선언입니다. 이사야가 "주여 어느 때까지니이까"(11절) 묻자, 응답은 성읍이 황폐하고 땅이 심히 황무하게 될 때까지라는 것이었습니다. 그러나 본문은 캄캄함으로 끝나지 않습니다. 13절 마지막 문장, "밤나무와 상수리나무가 베임을 당하여도 그 그루터기는 남아 있는 것 같이 거룩한 씨가 이 땅의 그루터기니라" — 심판이 나무를 베어낼지라도, 그 그루터기 안에는 여전히 거룩한 씨가 살아 있습니다. 이것이 이 무거운 본문이 스스로 붙잡는 소망의 자리입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">성전 환상, 정결케 하는 숯불, 부르심과 완악함의 예언, 그리고 그루터기에 남은 거룩한 씨 — 오늘 본문의 각 장면은 모두 그리스도를 향해 열려 있습니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>1절 웃시야 왕이 죽던 해, 흔들리는 땅의 왕좌 대신 이사야가 본 것은 결코 흔들리지 않는 보좌였습니다. 이는 "만왕의 왕이시요 만주의 주"(딤전 6:15)이신 그리스도, 죽지 않고 영원히 다스리시는 참된 왕을 미리 가리킵니다.</span></li>
+      <li><span class="tag">둘째</span><span>1–4절 이사야가 본 이 영광에 대해 요한복음은 놀라운 해석을 덧붙입니다. "이사야가 이렇게 말한 것은 주의 영광을 보고 주를 가리켜 말한 것이라"(요 12:41) — 이사야가 성전에서 본 "주"의 영광이 곧 그리스도의 영광이었다는 선언입니다. 오늘 본문의 환상은 곧 그리스도의 영광을 미리 본 사건입니다.</span></li>
+      <li><span class="tag">셋째</span><span>3절 스랍들의 "거룩하다 거룩하다 거룩하다"는 외침은 요한계시록의 하늘 보좌 앞 생물들의 찬양 — "거룩하다 거룩하다 거룩하다 주 하나님 곧 전능하신 이여"(계 4:8)로 이어지며, 이사야가 잠시 엿본 그 예배가 영원히 계속될 하늘의 예배임을 보여줍니다.</span></li>
+      <li><span class="tag">넷째</span><span>6–7절 제단에서 취한 숯불로 부정한 입술이 정결케 된 사건은, 흠 없는 자기를 하나님께 드린 그리스도의 피가 "너희 양심을 죽은 행실에서 깨끗하게 하고 살아 계신 하나님을 섬기게" 하신다는 말씀(히 9:14)의 예표로 읽힙니다. 이사야를 정결케 한 불이 가리키는 참된 제단은 결국 십자가입니다.</span></li>
+      <li><span class="tag">다섯째</span><span>8절 "내가 여기 있나이다 나를 보내소서"라는 이사야의 자원함은, 하나님의 뜻을 행하러 오신 아들의 순종 — "하나님이여 보시옵소서 두루마리 책에 나를 가리켜 기록된 것과 같이 하나님의 뜻을 행하러 왔나이다"(히 10:7) — 그리고 부활하신 주님이 제자들에게 "아버지께서 나를 보내신 것 같이 나도 너희를 보내노라"(요 20:21) 하신 보내심의 계보 안에 있습니다.</span></li>
+      <li><span class="tag">여섯째</span><span>9–10절의 완악함의 예언은 신약에서 네 차례나 인용됩니다 — 예수님이 비유로 말씀하시는 이유를 설명하실 때(마 13:14–15), 그리고 바울이 로마의 유대인들에게 복음이 거절당하는 이유를 설명할 때(행 28:26–27). 로마서 11장은 이 완악함이 "일부"이며 "이방인의 충만한 수가 들어오기까지"(롬 11:25)의 한시적인 일이라고 밝히며, 13절의 "그루터기"이자 "거룩한 씨"는 이사야 자신이 훗날 쓰게 될 "이새의 줄기에서 한 싹이 나며"(사 11:1)라는 메시아 예언의 그루터기와 그대로 이어집니다.</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 이사야 6장은 단지 한 선지자의 소명 이야기가 아니라, 그리스도의 영광을 미리 본 환상이며, 십자가의 불로 정결케 될 은혜를 예표하고, 완악해진 세상 속에서도 거룩한 씨를 통해 이어질 하나님의 구속사 전체를 압축해 보여주는 본문입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>"웃시야 왕이 죽던 해"는 대략 주전 740년경으로, 본문의 소명 기사는 이야기 순서상 뒤에 배치되었을 뿐 실제로는 이사야 사역의 출발점을 이루는 사건.</li>
+        <li>"스랍"(세라핌)은 히브리어로 '불타는 자들'이라는 뜻의 어근에서 왔으며, 하나님의 거룩한 임재를 둘러싼 불의 속성을 반영하는 존재.</li>
+        <li>9–10절의 명령형("둔하게 하라, 막히게 하라, 감기게 하라")은 히브리어에서 결과를 명령형으로 표현하는 관용법으로 볼 수 있어, 하나님의 주권적 심판과 백성의 자발적 거부가 함께 얽혀 있음을 시사.</li>
+        <li>13절 "그루터기"(원어 마체베트)는 나무가 완전히 베어진 후에도 남는 밑동을 뜻하며, 이사야 11:1의 "이새의 줄기"(그루터기) 이미지와 어휘적으로 연결됨.</li>
+        <li>1–5장의 심판 신탁 뒤에 6장의 소명 기사를 배치한 것은 신학적 강조를 위한 편집 — 심판의 이유(하나님의 거룩하심)를 독자가 충분히 느낀 후에야 그 심판을 선포한 선지자의 부르심을 보여줌.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>우리는 흔히 "충분히 준비되고 정결해져야 쓰임받을 수 있다"고 생각합니다. 그래서 자신의 부족함 앞에서 스스로를 다그치거나, 반대로 준비되지 않았다는 핑계로 부르심을 미룹니다. 그러나 오늘 본문에서 이사야는 자기 입술을 씻지 않았습니다. 스랍이 날아왔고, 이미 제단 위에 있던 불이 사용되었으며, "네 죄가 사하여졌느니라"는 선언은 이사야의 노력이 아니라 하늘의 선물이었습니다. 정결함은 응답의 조건이 아니라 응답을 가능하게 한 은혜였습니다. 오늘 우리가 부르심 앞에서 주저한다면, 그 이유는 대개 준비 부족이 아니라 이미 주어진 그 은혜를 아직 붙잡지 못했기 때문일 수 있습니다.</p>
+    <ul class="apply-list">
+      <li>오늘 제 부족함이 눈에 띌 때, 스스로 고치려 애쓰기 전에 이미 예비된 은혜의 숯불 앞에 먼저 나아갑니다.</li>
+      <li>"제가 무엇을 해낼 수 있을까"보다 "주께서 이미 저를 깨끗케 하셨다"는 사실을 먼저 붙듭니다.</li>
+      <li>결과가 보이지 않는 자리에서도, 부르신 그 음성 자체를 신뢰하며 "제가 여기 있습니다"라고 응답합니다.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">잿더미 같은 날에도, 그루터기는 거룩한 씨앗을 품고 있다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>하나님의 거룩하심 앞에서 "화로다 나여"라고 고백할 수밖에 없었던 순간이 있다면, 그때 가장 부끄러웠던 부분은 무엇이었나요?</li>
+      <li>"내가 여기 있나이다 나를 보내소서"라고 선뜻 답하기 어려웠던 순간, 나를 주저하게 만든 것은 준비 부족이었나요, 아니면 은혜를 미처 붙잡지 못한 것이었나요?</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 거룩하신 주님 앞에서 저의 부정함을 숨김없이 고백합니다. 이미 예비하신 은혜의 숯불로 저를 정결케 하시고, 두려움 없이 "제가 여기 있습니다"라고 응답하게 하소서. 그루터기만 남은 자리에서도 거룩한 씨를 심으시는 주님을 신뢰합니다. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(이사야 6:1–6:13). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
