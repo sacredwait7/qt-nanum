@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.07.26 (일)</span>
+      <span class="dot">·</span><span>흑암의 땅에 비칠 큰 빛</span>
+    </div>
+    <h1 class="ref">멍에는 꺾이고, 빛은 임하였다<span class="range">이사야(Isaiah) 9:1–9:7</span></h1>
+    <p class="hook">
+      가장 먼저 멸시받았던 땅이, 가장 먼저 큰 빛을 본다(9:1–2).<br>
+      무겁던 멍에와 채찍과 압제자의 막대기가 꺾였다(9:4).<br>
+      피 묻은 군화조차 불에 섶처럼 사라지는 날, 한 아기가 태어났다(9:5–6).<br>
+      그 어깨에 정사를 메신 이의 이름은 기묘자요 평강의 왕이시다(9:6).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">8장이 "환난과 흑암과 고통의 흑암"(8:22)으로 끝났다면, 9장은 그 어둠의 한복판에서 아무 예고 없이 터지는 빛의 선언으로 시작합니다.</p>
+    <p>1절, "전에 고통 받던 자에게는 어둠이 없으리로다... 스불론 땅과 납달리 땅이 멸시를 당하였더니 후에는 해변 길과 요단 저쪽 이방의 갈릴리를 영화롭게 하시리라." 스불론과 납달리는 앗수르의 침략이 가장 먼저 짓밟고 지나간, 가장 먼저 수치를 당한 변방이었습니다. 그런데 하나님은 그 부끄러움이 가장 컸던 자리를 영광이 가장 먼저 임하는 자리로 바꾸겠다 선언하십니다. 이어 2절, "흑암에 행하던 백성이 큰 빛을 보고 사망의 그늘진 땅에 거주하던 자에게 빛이 비치도다." 백성이 빛을 만들어낸 것이 아니라, 걷고 있던 그 자리에 빛이 임한 것입니다.</p>
+    <p>3–4절은 그 빛이 가져오는 결과를 두 가지 그림으로 보여줍니다. 하나는 추수하는 자의 즐거움, 탈취물을 나누는 자의 즐거움(3절) — 수고가 마침내 열매로 돌아오는 기쁨입니다. 다른 하나는 "그 무거운 멍에와 그 어깨의 채찍과 그 압제자의 막대기를 주께서 꺾으시되 미디안의 날과 같이 하셨음이니이다"(4절). 기드온이 삼백 명으로 미디안을 물리쳤던 그날처럼, 사람의 군사력이 아니라 하나님의 손이 억압을 꺾으십니다. 5절, 어지러이 싸우던 군인들의 신과 피 묻은 복장마저 "불에 섶 같이 살라지리니" — 전쟁의 흔적 자체가 사라지는 완전한 평화의 그림입니다.</p>
+    <p>그리고 이 모든 것의 이유가 6절에서 밝혀집니다. "이는 한 아기가 우리에게 났고 한 아들을 우리에게 주신 바 되었는데." 동사의 주어가 백성이 아니라 하나님이라는 점이 결정적입니다 — 백성은 아무것도 이루지 않았고, 다만 "났고", "주신 바 되었다"는 수동태로 받았을 뿐입니다. 그 아기의 어깨에는 정사가 메어지고, 그 이름은 넷으로 불립니다 — "기묘자라, 모사라, 전능하신 하나님이라, 영존하시는 아버지라, 평강의 왕이라." 연약한 아기의 몸과 전능하신 하나님이라는 이름이 한 문장 안에 나란히 놓이는 것, 이것이 본문이 말하는 신비입니다.</p>
+    <p>7절은 그 통치의 성격을 마무리합니다. "그 정사와 평강의 더함이 무궁하며... 지금 이후로 영원히 그 나라를 굳게 세우고 정의와 공의로 그것을 보호하실 것이라." 그리고 마지막 한 줄, "만군의 여호와의 열심이 이를 이루시리라." 이 나라를 세우는 것은 백성의 열심도, 왕의 지혜도 아니라 하나님 자신의 열심입니다. 8장을 채웠던 흑암과 두려움 뒤에, 본문은 사람이 준비하지 않은 빛과 사람이 이루지 않은 평강으로 답합니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">멸시받던 땅에 임한 빛에서부터 아기에게 붙여진 네 이름, 그리고 영원한 다윗의 왕좌까지 — 오늘 본문은 신약이 가장 직접적으로 그리스도께 연결하는 본문 중 하나입니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>1–2절 "이방의 갈릴리"에 비친 빛은 마태복음이 그대로 인용합니다 — "스불론 땅과 납달리 땅과... 흑암에 앉은 백성이 큰 빛을 보았고"(마 4:15–16). 마태는 예수님이 바로 그 갈릴리에서 사역을 시작하신 사건을 이 예언의 성취로 밝힙니다.</span></li>
+      <li><span class="tag">둘째</span><span>4절 "미디안의 날과 같이" 꺾이는 멍에는 사사기 7장 기드온의 전쟁을 배경으로 하며, 사람의 수가 아니라 하나님의 손으로 이기는 싸움의 원형을 보여줍니다. 이는 십자가에서 "통치자들과 권세들을 무력화하여 드러내어 구경거리로 삼으신"(골 2:15) 그리스도의 승리로 이어집니다.</span></li>
+      <li><span class="tag">셋째</span><span>6절 "한 아기가 우리에게 났고"는 누가복음의 탄생 기사 — "오늘 다윗의 동네에 너희를 위하여 구주가 나셨으니"(눅 2:11) — 로 그대로 이어지며, 바울이 말한 "때가 차매 하나님이 그 아들을 보내사"(갈 4:4)의 성취입니다.</span></li>
+      <li><span class="tag">넷째</span><span>6절 "기묘자라 모사라"는 이 아기에게 속한 지혜가 사람의 것이 아님을 말하며, 바울은 그리스도 안에 "지혜와 지식의 모든 보화가 감추어져"(골 2:3) 있다고 밝힙니다. "전능하신 하나님"이라는 이름은 요한이 "말씀이 곧 하나님이시니라"(요 1:1)고 선언한 것과 같은 신성 고백입니다.</span></li>
+      <li><span class="tag">다섯째</span><span>6절 "평강의 왕"은 에베소서에서 "그는 우리의 화평이신지라 둘로 하나를 만드사"(엡 2:14)라는 말씀으로, 그리고 그가 태어나신 밤 하늘의 찬양 — "땅에서는 하나님이 기뻐하신 사람들 중에 평화로다"(눅 2:14) — 로 곧장 이어집니다.</span></li>
+      <li><span class="tag">여섯째</span><span>7절 "다윗의 왕좌와 그의 나라"를 영원히 세우신다는 약속은 사무엘하 7장의 다윗 언약을 이어받으며, 천사가 마리아에게 한 말 — "주 하나님께서 그 조상 다윗의 왕위를 그에게 주시리니... 그 나라가 무궁하리라"(눅 1:32–33) — 로 정확히 성취됩니다.</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 이사야 9장은 멸시받던 변방에 비친 빛에서 시작해, 사람이 이루지 않은 승리와 사람이 이룬 것이 아니라 주어진 한 아기, 그리고 영원히 무너지지 않을 평강의 나라까지 — 여호와의 열심으로 이루어질 그리스도의 오심 전체를 미리 노래하는 본문입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>히브리어 성경에서는 이 단락이 8:23–9:6으로 구분되어, 한국어·영어 성경의 9:1–9:7과 장절 구분이 한 절씩 어긋남.</li>
+        <li>문학 구조는 빛의 선언(1–2절), 즐거움의 이유(3–5절), 아기 탄생 신탁과 네 칭호(6절), 다윗 왕조의 영원한 통치로 맺는 결론(7절)으로 짜여 있음.</li>
+        <li>6절 "기묘자라 모사라"(פֶּלֶא יוֹעֵץ)는 두 개의 별도 칭호가 아니라 "놀라운 계획을 세우시는 분"이라는 하나의 통합된 칭호로 보는 견해가 유력함.</li>
+        <li>1절의 지리적 언급(해변 길, 요단 저쪽, 이방의 갈릴리)은 주전 732년 앗수르가 가장 먼저 병합한 북쪽 변경으로, 수치가 가장 컸던 곳에 영광이 가장 먼저 임함을 강조하는 지리적 반전.</li>
+        <li>6절의 "아기·아들"이라는 연약한 이미지와 7절의 "왕좌·정사"라는 통치자 이미지가 나란히 놓여, 연약함과 권능이 한 인격 안에 공존함을 보여줌.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>우리는 흔히 멍에를 벗는 것도, 어둠에서 빛으로 걸어 나가는 것도 스스로의 노력과 결단의 몫이라 여깁니다. 그러나 본문은 정반대로 말합니다 — "한 아기가 우리에게 났고." 백성은 빛을 만들지도, 멍에를 스스로 꺾지도 않았습니다. 다만 이미 임한 것을 받았을 뿐입니다. 은혜는 내가 어둠을 이겨낸 결과가 아니라, 내가 아직 어둠 속을 걷고 있을 때 이미 비쳐온 빛입니다. 오늘 내 자리가 아직 흑암처럼 느껴진다 해도, 그것이 빛을 받을 자격을 결정하지 않습니다.</p>
+    <ul class="apply-list">
+      <li>스스로 문제를 다 해결한 뒤에야 평안할 자격이 있다고 여기는 마음을 내려놓고, 오늘 이미 주어진 평강의 왕을 붙듭니다.</li>
+      <li>여전히 무거운 짐이 있다면, 그것을 혼자 꺾어내려 애쓰기보다 "주께서 꺾으시리라"는 말씀에 오늘 하루를 맡깁니다.</li>
+      <li>내가 가장 멸시받았다 느끼는 자리일수록, 그곳이 빛이 가장 먼저 임하는 자리일 수 있음을 기억하며 소망을 품습니다.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">내가 이룬 것이 아니라 내게 나신 이 — 그 아기의 이름이 오늘 내 흑암의 답이다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>지금 내 삶에서 가장 "멸시받는 변방"처럼 느껴지는 자리는 어디인가요? 그곳에 하나님의 빛이 먼저 임할 수 있다면 어떤 마음이 드나요?</li>
+      <li>내가 짊어진 멍에 중에, 스스로 꺾어내려 애쓰기보다 "주께서 꺾으시리라"는 말씀에 오늘 맡기고 싶은 것이 있다면 나눠봅시다.</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 저의 어둠을 제 힘으로 밝히려 하지 않고 이미 임하신 빛이신 주님을 바라보게 하소서. 무겁던 멍에를 주님의 손으로 꺾어주시고, 평강의 왕이신 주님의 다스림 아래 오늘 하루 쉬게 하소서. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(이사야 9:1–9:7). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
