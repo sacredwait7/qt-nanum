@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.07.28 (화)</span>
+      <span class="dot">·</span><span>앗수르에게 화 있을진저</span>
+    </div>
+    <h1 class="ref">도끼가 도끼를 든 손을 향해 자랑하다<span class="range">이사야(Isaiah) 10:5–10:19</span></h1>
+    <p class="hook">
+      앗수르는 하나님의 진노를 담은 막대기였으나(10:5)<br>
+      스스로 왕들을 세우고 무너뜨리는 자로 호언했다(10:8–11)<br>
+      도끼가 어찌 그것을 쓰는 자에게 자랑하겠는가(10:15)<br>
+      쓰임받던 손이 심판받는 손이 되는 날이 온다(10:12).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">10장 앞부분이 불의한 재판관들을 향한 화 선언이었다면, 5절부터는 그 재판관들보다 더 큰 권세, 곧 하나님이 친히 심판의 도구로 세우신 제국 앗수르를 향한 화 선언이 시작됩니다.</p>
+    <p>5–6절, "앗수르 사람은 화 있을진저 그는 나의 진노의 막대기요 그 손의 몽둥이는 나의 분노라 내가 그를 보내어 경건하지 아니한 나라를 치게 하며... 그들을 길거리의 진흙 같이 짓밟게 하려 하거니와." 앗수르의 침공조차 하나님의 손 밖에 있지 않았습니다. 이스라엘을 향한 심판은 우연한 재앙이 아니라, 하나님이 손수 드신 막대기의 일이었습니다. 그러나 7절은 곧바로 방향을 틉니다. "그의 뜻은 이같지 아니하며... 오직 그의 마음은 허다한 나라를 파괴하며 멸절하려 하는도다." 하나님이 도구로 쓰신 것과 그 도구 자신이 품은 야심은 전혀 다른 것이었습니다.</p>
+    <p>8–11절에서 앗수르 왕의 육성이 직접 들립니다. "나의 방백들은 다 왕이 아니냐... 갈로는 갈그미스와 같지 아니하며 하맛은 아르밧과 같지 아니하며 사마리아는 다메섹과 같지 아니하냐... 내가 사마리아와 그 우상들에게 행함 같이 예루살렘과 그 우상들에게 행하지 못하겠느냐." 정복한 성읍들을 손가락으로 꼽으며 다음 목표를 예루살렘으로 겨누는 이 오만은, 자신이 누군가의 손에 들린 도구라는 사실을 완전히 잊은 자의 말투입니다.</p>
+    <p>12–14절에서 하나님은 그 오만의 끝을 선언하십니다. "주께서... 다 마치신 후에 내가 앗수르 왕의 완악한 마음의 죄와 그의 높은 눈의 자랑을 벌하시리니." 그리고 앗수르 왕 자신의 자평이 인용됩니다. "내 손의 힘과 내 지혜로 이 일을 행하였나니... 열국의 재물을 얻은 것은 마치 새의 보금자리를 얻음 같고... 날개를 치는 자나 입을 벌리는 자나 지저귀는 자가 하나도 없었다." 저항 한 번 없이 온 세상을 손에 넣었다는 이 말 속에는, 그 손을 애초에 들어 쓰신 분에 대한 인식이 완전히 지워져 있습니다.</p>
+    <p>15절이 오늘 본문의 중심추입니다. "도끼가 어찌 그것을 쓰는 자에게 스스로 자랑하겠느냐 톱이 어찌 그것을 켜는 자에게 스스로 큰 체 하겠느냐 이는 막대기가 자기를 드는 자를 움직이려 하며 지팡이가 나무 아닌 자를 들려 하는 것과 같으리라." 도구가 손을 자랑하는 것이 아니라 손이 도구를 들어 쓰는 것인데, 앗수르는 이 순서를 뒤집었습니다. 그래서 16–19절, 심판의 불이 앗수르를 향해 옮겨 붙습니다. "그의 아름다운 삼림과 기름진 밭을 남김없이 소멸하되 병자가 점점 쇠약함 같이 하시리니... 그의 삼림에 남은 나무의 수가 희소하여 아이라도 능히 계산할 수 있으리라." 무성했던 숲이 한 아이가 셀 수 있을 만큼의 나무로 줄어드는 이 장면은 잔혹해 보이지만, 동시에 유다를 향한 조용한 위로이기도 합니다 — 지금 유다를 짓밟는 저 손도, 결코 하나님의 손보다 크지 않다는 사실 말입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">진노의 도구를 들어 쓰시고 그 도구의 교만마저 심판하시는 이 장면은, 하나님이 어떻게 인간의 악한 뜻까지 자신의 구속 계획 안에 품으시는지를 보여주는 성경 전체의 큰 패턴을 예고합니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>10:5 "그는 나의 진노의 막대기"라는 표현은 훗날 바벨론을 향해 하박국이 던진 동일한 질문 — 악한 나라를 들어 자기 백성을 심판하시는 하나님의 방식(합 1:6,13) — 으로 이어지고, 마침내 사도행전은 헤롯과 빌라도, 이방인과 이스라엘 백성이 "하나님의 권능과 뜻대로 예정하신 그것"을 행했을 뿐이라고 말함으로써(행 4:27–28) 십자가 자체가 이 패턴의 절정임을 보여줍니다.</span></li>
+      <li><span class="tag">둘째</span><span>10:7 "그의 뜻은 이같지 아니하며"라는 구절, 곧 도구의 악한 의도와 하나님의 선한 목적이 갈라지는 이 틈은 요셉이 형들에게 한 말과 정확히 같은 구조입니다 — "당신들은 나를 해하려 하였으나 하나님은 그것을 선으로 바꾸사"(창 50:20), 그리고 이 구조는 그리스도의 십자가에서 가장 깊이 반복됩니다.</span></li>
+      <li><span class="tag">셋째</span><span>10:13–14 "내 손의 힘과 내 지혜로 이 일을 행하였나니"라는 자기 자랑은, "이 큰 바벨론은... 내 능력과 내 위엄의 영광으로 건설한 것이 아니냐"던 느부갓네살의 교만(단 4:30)과 나란히 놓이며, 두 왕 모두 정확히 같은 이유로 낮아집니다 — 이는 "자기를 낮추시고 죽기까지 복종하신"(빌 2:8) 그리스도의 자기 비움과 정반대의 초상입니다.</span></li>
+      <li><span class="tag">넷째</span><span>10:15 도끼와 톱이 쓰는 자에게 자랑할 수 없다는 이 비유는, "토기가 토기장이에게 어찌 나를 이같이 만들었느냐 말할 수 있느냐"는 바울의 질문(롬 9:20–21)과 같은 결의 진리이며, 구원이 "행위에서 난 것이 아니니 이는 누구든지 자랑하지 못하게 함이라"(엡 2:9)는 은혜의 논리로 곧장 이어집니다.</span></li>
+      <li><span class="tag">다섯째</span><span>10:18–19 무성하던 숲이 아이도 셀 수 있는 몇 그루로 줄어드는 이 장면은 절멸이 아니라 남은 자의 씨앗을 예비하는 그림이며, 바로 다음 단락(사 10:20–22)의 "남은 자가 돌아올 것이라"는 선언과 이사야 11:1 "이새의 줄기에서 한 싹이 나며"로 이어져, 심판의 잿더미 속에서도 끊어지지 않는 메시아의 계보를 예비합니다.</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 오늘 본문은 제국의 오만을 고발하는 정치적 심판시이면서, 동시에 하나님이 악조차 자기 도구로 사용하시되 그 악의 책임은 결코 눈감지 않으시는 분임을 증언합니다. 앗수르의 도끼도, 유다를 낳은 남은 나무도, 결국 훗날 십자가에서 완전히 낮아지고 완전히 들리시는 한 분 안에서 그 뜻이 완성됩니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>10:5–19은 10:1–4의 화 선언(불의한 재판관)에 이어지는 두 번째 화 선언으로, 대상이 국내 지도층에서 앗수르 제국으로 확장됨.</li>
+        <li>9절의 갈로·갈그미스·하맛·아르밧·다메섹·사마리아는 앗수르가 실제로 정복한 성읍들로, 사마리아 함락(주전 722년) 이후 예루살렘을 다음 목표로 겨눈 역사적 배경을 반영함.</li>
+        <li>히브리어로 "막대기"(מַטֶּה)와 "몽둥이"는 원래 목자나 통치자가 손에 쥐는 권위의 도구를 가리키는 말로, 앗수르가 스스로는 주체인 줄 알지만 실은 다른 손에 들린 도구임을 언어 자체로 드러냄.</li>
+        <li>15절의 도끼·톱·막대기·지팡이 넷을 겹쳐 쓴 비유는 고대 근동 문헌에서도 드문 집중적 반복법으로, 본문이 가장 힘주어 말하려는 요점이 바로 이 구절임을 보여줌.</li>
+        <li>16–19절의 "병자가 점점 쇠약함 같이"라는 표현은 급작스러운 전멸이 아니라 서서히 무너지는 쇠퇴의 이미지로, 이후 앗수르 제국이 실제로 겪은 점진적 몰락과 맞물림.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>우리 안에도 앗수르 왕의 목소리가 있습니다. 일이 잘 풀릴 때 "내 손의 힘과 내 지혜로 이 일을 행하였다"고 조용히 되뇌는 마음, 성과와 자격을 나의 것으로 돌리고 싶은 마음입니다. 반대로 어떤 날은 내가 그저 누군가에게 쓰이고 버려지는 도구일 뿐이라는 허무감에 빠지기도 합니다. 그러나 도끼는 도끼를 든 손을 자랑할 수도, 그 손 없이는 존재할 수도 없습니다. 은혜는 내가 이룬 것을 내 것으로 자랑하지 않아도 되게 하는 동시에, 내가 쓰임받는 존재라는 사실이 결코 나의 가치를 낮추지 않는다는 것을 동시에 말해 줍니다 — 나를 붙든 손이 나를 향해 선한 뜻을 품고 계시기 때문입니다.</p>
+    <ul class="apply-list">
+      <li>오늘 이룬 작은 성과 앞에서 "내 손의 힘과 내 지혜로"라는 말이 조용히 떠오를 때, 그 성과를 나를 들어 쓰신 손께 다시 돌려드립니다.</li>
+      <li>내가 그저 쓰이고 소모되는 존재처럼 느껴질 때, 도끼가 손 없이 존재할 수 없듯 나 역시 나를 붙든 은혜 없이는 아무것도 아님을 기억하며 오늘의 자리를 받아들입니다.</li>
+      <li>나보다 강해 보이는 사람이나 상황 앞에서 위축될 때, 그들 역시 더 큰 손 안에 있는 도구일 뿐임을 기억하고 오늘 하루 두려움 대신 평정을 구합니다.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">도끼는 도끼를 든 손을 자랑할 수 없다 — 오늘 내가 이룬 모든 것도, 나를 붙든 그 손의 것이다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>최근 이룬 일 중에 "내 손의 힘과 내 지혜로" 되었다고 은근히 자부했던 순간이 있다면 나눠봅시다. 오늘 본문은 그 생각을 어떻게 다시 보게 하나요?</li>
+      <li>내가 그저 쓰이고 버려지는 도구처럼 느껴졌던 시기가 있었다면, 그 안에서도 나를 붙든 손이 있었음을 지금 돌아보면 어떻게 보이나요?</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 오늘 이룬 작은 것들을 제 손의 힘과 지혜로 돌리려 했던 마음을 돌이킵니다. 저는 도끼일 뿐이며, 저를 붙드신 손이 계심을 기억하게 하소서. 강해 보이는 것들 앞에서 위축되지 않고, 저를 들어 쓰시는 주님의 선한 뜻을 신뢰하게 하소서. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(이사야 10:5–10:19). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
