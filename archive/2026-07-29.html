@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.07.29 (수)</span>
+      <span class="dot">·</span><span>남은 자가 돌아오리니</span>
+    </div>
+    <h1 class="ref">가장 높은 것은 찍히고, 가장 작은 것은 돌아온다<span class="range">이사야(Isaiah) 10:20–10:34</span></h1>
+    <p class="hook">
+      남은 자는 자기를 친 손이 아니라 여호와를 진실하게 의지하리라(10:20)<br>
+      바다의 모래 같은 수는 구원하지 못하나 넘치는 공의는 반드시 작정한 대로 이루어진다(10:22–23)<br>
+      마을들의 이름이 하나씩 불리며 두려움이 가까워 와도, 그 걸음은 오늘 놉에서 멈춘다(10:28–32)<br>
+      가장 우람한 레바논의 나무도 권능 있는 자 앞에서는 넘어진다(10:33–34).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">어제 본문이 도끼를 든 손과 도끼 자신의 오만을 대비시켰다면, 오늘 본문은 그 심판의 불길 속에서 조용히 살아남는 이들에 대한 약속으로 시작합니다 — 그러나 그 약속은 위로로 끝나지 않고, 다시 한 번 다가오는 발걸음의 두려움과 마지막 심판의 무게를 함께 짊어집니다.</p>
+    <p>20–21절, "그 날에 이스라엘의 남은 자와 야곱 족속의 피난한 자들이 다시는 자기를 친 자를 의지하지 아니하고 오직 이스라엘의 거룩하신 이 여호와를 진실하게 의지하리니 남은 자 곧 야곱의 남은 자가 능하신 하나님께로 돌아올 것이라." "다시는 자기를 친 자를 의지하지 아니하고"라는 이 한 구절이 참된 돌이킴의 정의입니다. 이스라엘은 앗수르에게, 또는 애굽에게 기대어 안전을 구했다가 바로 그 손에 맞았습니다. 돌이킨다는 것은 감정을 바꾸는 일이 아니라, 기대는 대상을 바꾸는 일입니다.</p>
+    <p>22–23절은 곧바로 숫자에 대한 환상을 깨뜨립니다. "이스라엘이여 네 백성이 바다의 모래 같을지라도 남은 자만 돌아오리니 넘치는 공의로 파멸이 작정되었음이라 이미 작정되신 파멸을 주 만군의 여호와께서 온 세계 중에 행하시리라." 많음이 곧 구원을 뜻하지 않습니다. 돌아오는 것은 언제나 남은 자, 곧 하나님이 친히 정하신 은혜의 몫입니다.</p>
+    <p>그리고 24–27절, 심판 신탁 한가운데 위로의 음성이 끼어듭니다. "시온에 거주하는 내 백성아 앗수르 사람을 두려워하지 말라 그가 애굽이 한 것처럼 막대기로 너를 치며 몽둥이를 들어 너를 칠지라도... 극히 잠시 후에 나의 진노가 그쳐지고." 두려움의 근거를 없애 주는 것이 아니라, 두려움보다 더 짧은 시한과 더 큰 손을 보여주는 위로입니다. 27절 끝, "그의 멍에가 네 목에서 떠나고 그 멍에가 부러지리라"는 약속으로 이 단락이 마무리됩니다.</p>
+    <p>28–32절은 성경에서 가장 긴박한 지리적 행군시 가운데 하나입니다. "그가 아얏에 이르고 미그론을 지나며 믹마스에... 게바에 유숙하니 라마 사람이 떨며 사울의 기브아 사람이 도망하도다... 오늘 그가 놉에 머무르고 손을 흔들리로다 딸 시온 산 곧 예루살렘 언덕을 향하여." 마을 이름 하나하나가 예루살렘을 향해 점점 가까워지며 숨 막히는 리듬을 만들다가, 32절에서 그 발걸음은 놉에서 멈춥니다. 손을 흔들 뿐, 넘지 못합니다. 그리고 33–34절, 이 모든 위협보다 더 큰 것이 선언됩니다. "주 만군의 여호와께서 두렵게 그 가지를 자르시리니 그 키 큰 자가 찍히며 높은 자가 낮아지겠고... 레바논이 권능 있는 자에게 넘어지리라." 앗수르의 걸음이 인간의 정한 한계 앞에 멈추듯, 세상에서 가장 우람한 것도 하나님의 도끼 앞에서는 예외가 없습니다. 남은 자를 지키시는 손과, 가장 높은 것을 꺾으시는 손은 결국 같은 손입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">남은 자를 정하시고, 원수의 걸음에 한계를 그으시고, 가장 높은 것을 꺾으시는 오늘 본문의 세 움직임은 모두 성경 전체를 관통하는 하나님의 구속 방식을 예고합니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>10:21 "남은 자 곧 야곱의 남은 자가 능하신 하나님께로 돌아올 것이라"는 약속은, 이사야가 약 20년 전 자기 아들에게 붙인 이름 스알야숩("남은 자가 돌아오리라", 사 7:3)이 문자 그대로 성취되는 순간이며, 바울은 이 본문을 그대로 인용해 "이스라엘 자손들의 수가 비록 바다의 모래 같을지라도 남은 자만 구원을 받으리니"(롬 9:27)라고 말함으로써 은혜로 택하신 남은 자 교리(롬 11:5)의 뿌리를 여기에 둡니다.</span></li>
+      <li><span class="tag">둘째</span><span>10:20 "다시는 자기를 친 자를 의지하지 아니하고 오직... 여호와를 진실하게 의지하리니"는 "여호와를 의지하고 신뢰하는 그 사람은 복을 받을 것이라... 무릇 사람을 믿고 육신으로 그의 힘을 삼는 자는 저주를 받을 것이라"(렘 17:5,7)와 같은 결의 말씀이며, 신약에서는 "육체를 신뢰하지 아니하는 우리가 곧 할례파라"(빌 3:3)는 고백으로 이어집니다.</span></li>
+      <li><span class="tag">셋째</span><span>10:24 "내 백성아... 두려워하지 말라"는 이사야서 전체에 반복되는 위로 신탁의 패턴(사 41:10, 43:1)이며, 이 패턴은 마침내 "너희가 세상에서는 환난을 당하나 담대하라 내가 세상을 이기었노라"(요 16:33)는 그리스도의 음성에서 완성됩니다.</span></li>
+      <li><span class="tag">넷째</span><span>10:27 "그의 멍에가 네 목에서 떠나고 그 멍에가 부러지리라"는 이미 사 9:4에서 읽었던 멍에 꺾임의 이미지를 다시 반복하며, 신약에서는 "내 멍에는 쉽고 내 짐은 가벼움이라"(마 11:29–30)는 그리스도의 초청으로 온전히 성취됩니다.</span></li>
+      <li><span class="tag">다섯째</span><span>10:32 침략자의 발걸음이 예루살렘 바로 앞 놉에서 멈추는 이 장면은 "네가 여기까지 오고 넘어가지 못하리니"(욥 38:11)라는 바다를 향한 하나님의 정한 경계와 같은 원리이며, 마침내 십자가에서 악의 분노가 "하나님의 정하신 뜻과 미리 아신 대로"(행 2:23) 딱 그만큼만 허용되고 넘어서지 못하는 데서 그 절정을 이룹니다.</span></li>
+      <li><span class="tag">여섯째</span><span>10:33–34 "레바논이 권능 있는 자에게 넘어지리라"는 세상 권세와 교만의 상징인 레바논 백향목이 찍히는 장면으로, 바로 다음 장 "이새의 줄기에서 한 싹이 나며"(사 11:1)로 곧장 이어져, 메시아가 꺾이지 않은 화려함이 아니라 잘려나간 그루터기에서 돋아나는 분임을 예비합니다(사 53:2).</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 오늘 본문은 남은 자를 향한 은혜의 약속이면서, 동시에 원수의 걸음에도 가장 높은 나무에도 예외 없는 하나님의 주권을 선언합니다. 잘려나간 자리에서 돌아오는 남은 자와, 잘려나간 그루터기에서 돋아날 새 순은 결국 하나의 이야기, 곧 십자가에서 완성될 하나님의 구속사입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>10:20–23의 "남은 자" 사상은 사 7:3 스알야숩(이사야 아들의 이름, "남은 자가 돌아오리라")과 직접 연결되며, 약 20년 전 주어진 예언적 이름이 본문에서 문자적으로 되울리는 구조.</li>
+        <li>10:24–27은 앞뒤의 심판 신탁(10:5–19, 10:28–34) 사이에 삽입된 위로 신탁으로, 두려움의 대상(앗수르)과 위로의 근거(과거 애굽에서 건지신 역사)를 나란히 배치함.</li>
+        <li>10:28–32의 지명 나열(아얏–미그론–믹마스–게바–라마–기브아–갈림–라이사–아나돗–맛메나–게빔–놉)은 예루살렘 북쪽에서 남하하는 실제 행군로를 따라가는 지리적 시로, 짧은 절과 급박한 동사가 긴장을 고조시키는 문학적 장치.</li>
+        <li>32절의 "오늘"(히, 하욤)이라는 시간 부사가 못박히듯 등장해, 침략자의 진격이 하나님이 정하신 바로 그 순간·그 지점에서 멈춤을 강조.</li>
+        <li>33–34절의 레바논·삼림 이미지는 10:15–19에서 이미 등장한 도끼·숲 모티프의 절정이자, 11:1 "그루터기"로 넘어가는 문학적 다리 역할을 함.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>우리는 흔들리는 나를 지키려 무언가에 필사적으로 매달립니다 — 능력, 평판, 관계, 심지어 두려움 그 자체에도 기댑니다. 그러나 오늘 본문이 남은 자에게 요구하는 것은 더 강한 무언가를 찾아 나서는 노력이 아니라, 이미 정하신 은혜의 몫으로 돌아오는 것입니다. 은혜는 내가 붙잡을 대상을 스스로 바꾸라고 다그치지 않고, 이미 나를 붙드신 손을 보게 합니다. 다가오는 위협에 한계를 그으신 분도, 남은 자를 돌아오게 하시는 분도 같은 분이기 때문입니다.</p>
+    <ul class="apply-list">
+      <li>오늘 나를 위협하는 것이 아무리 가까이 다가와도, 그것이 넘지 못할 "놉"이 있음을 믿고 지금 이 순간 두려움 대신 최소한의 평정을 구합니다.</li>
+      <li>내가 지금껏 기대어 온 것 — 능력, 평판, 관계 — 이 정작 나를 쳤던 순간을 떠올리며, 오늘은 그 자리를 여호와께 다시 내어드립니다.</li>
+      <li>아직 내 삶에서 꺾이지 않은 교만한 높음이 있다면, 그것이 낮아지는 것을 상실이 아니라 새 순이 돋을 자리로 받아들입니다.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">가장 높은 나무는 찍히지만, 가장 작은 남은 자는 반드시 돌아온다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>최근 "자기를 친 자"처럼 오히려 나를 힘들게 한 대상에게 기대려 했던 순간이 있다면 나눠봅시다. 오늘 본문은 그 기댐을 어디로 옮기라고 말하나요?</li>
+      <li>위협이 턱밑까지 다가왔다고 느꼈지만 결국 넘지 못했던 "놉"과 같은 순간을 돌아보며, 그 안에서 하나님이 정하신 한계를 어떻게 발견할 수 있을까요?</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 오늘도 저를 친 것에게 기대려 했던 마음을 여호와께로 돌이킵니다. 다가오는 두려움 앞에서 주께서 정하신 한계를 신뢰하며, 꺾이는 것이 끝이 아니라 새 순이 돋을 자리임을 믿게 하소서. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(이사야 10:20–10:34). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
