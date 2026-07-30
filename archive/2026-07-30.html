@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.07.30 (목)</span>
+      <span class="dot">·</span><span>이새의 줄기에 돋아난 싹</span>
+    </div>
+    <h1 class="ref">그루터기에서 나신 이, 온 땅을 덮는 평화<span class="range">이사야(Isaiah) 11:1–11:16</span></h1>
+    <p class="hook">
+      찍힌 그루터기에는 아무 미래도 없어 보이지만, 바로 거기서 한 싹이 돋는다(11:1)<br>
+      그 위에 강림하시는 것은 힘의 영이 아니라 지혜와 경외의 영이다(11:2–3)<br>
+      이리와 어린 양이 함께 눕는 자리에는 젖먹이도 독사의 굴에 손을 넣는다(11:6–8)<br>
+      흩어졌던 자들을 위해, 바다를 가르시던 그 손이 다시 큰 길을 내신다(11:15–16).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">어제 본문은 레바논의 우람한 나무들이 찍혀 넘어지는 장면으로 끝났습니다(10:33–34). 오늘 본문은 바로 그 잘려나간 밑동에서 시작합니다 — 심판이 끝난 자리가 곧 새 생명이 시작되는 자리입니다.</p>
+    <p>1절, "이새의 줄기에서 한 싹이 나며 그 뿌리에서 한 가지가 나서 결실할 것이요." "줄기"는 베어진 나무의 밑동을 가리키는 단어입니다. 다윗 왕가의 영광은 이미 찍혔고, 남은 것은 땅속 뿌리뿐인 것처럼 보이는 그 자리에서, 하나님은 새 순을 약속하십니다. 사람의 계보가 끝났다고 여겨질 때가 바로 하나님이 시작하시는 때입니다.</p>
+    <p>2–3절은 이 싹에게 임하는 것이 무엇인지 말합니다. "그의 위에 여호와의 영 곧 지혜와 총명의 영이요 모략과 재능의 영이요 지식과 여호와를 경외하는 영이 강림하시리니 그가 여호와를 경외함으로 즐거움을 삼을 것이니." 이 통치자의 힘은 혈통이나 군사력이 아니라 여호와의 영에서 나옵니다. "그의 눈에 보이는 대로 심판하지 아니하며 귀에 들리는 대로 판단하지 아니하며"라는 구절은 보이는 증거와 들리는 소문에 좌우되는 인간 재판관의 한계를 정면으로 넘어섭니다.</p>
+    <p>4–5절, 그 심판의 방향은 분명합니다. "공의로 가난한 자를 심판하며 정직으로 세상의 겸손한 자를 판단할 것이며... 공의로 그의 허리띠를 삼으며 성실로 그의 몸의 띠를 삼으리라." 힘없는 자의 편에서 재판하는 왕입니다. 그리고 6–9절, 그 통치의 열매는 상상하기 어려운 평화입니다. "이리가 어린 양과 함께 살며... 사자가 소처럼 풀을 먹을 것이며... 젖 먹는 아이가 독사의 구멍에서 장난하며." 포식자와 피식자를 가르던 모든 경계가 무너지는 이 장면은 은유가 아니라 창조 질서 자체의 회복입니다. "이는 물이 바다를 덮음 같이 여호와를 아는 지식이 세상에 충만할 것임이니라"(9절) — 평화의 근거는 교육이나 협약이 아니라 하나님을 아는 지식의 충만함입니다.</p>
+    <p>10–16절은 시야를 이스라엘 국경 너머로 넓힙니다. "그 날에 이새의 뿌리에서 한 싹이 나서 만민의 기치로 설 것이요 열방이 그에게로 돌아오리니"(10절). "주께서 다시 그의 손을 펴사... 남은 자를 회복하실 것이라"(11절)는 "다시"라는 말로 첫 번째 구원(출애굽)에 이은 두 번째 구원을 예고합니다. 에브라임과 유다의 오랜 반목조차(12–14절) 이 통치 아래 풀리고, 마침내 "여호와께서 애굽 해만을 말리시고... 그 하수를 쳐 일곱 갈래로 나누어... 이스라엘이 애굽 땅에서 나오던 날과 같게 하시리라"(15–16절)는 약속으로 끝맺습니다. 홍해를 가르신 그 손이, 흩어진 남은 자를 위해 또 한 번 길을 여십니다. 잘려나간 그루터기는 끝이 아니라, 온 땅을 덮는 평화가 시작되는 자리였습니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">그루터기에서 돋는 싹, 그 위에 임하는 영, 회복되는 창조 질서, 그리고 흩어진 자를 향한 새 출애굽 — 오늘 본문의 이 네 움직임은 성경 전체를 관통하는 구속의 궤적을 미리 그립니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>11:1 "이새의 줄기에서 한 싹이 나며"는 다윗 가문의 정치적 몰락 이후에도 하나님의 언약이 끊어지지 않았음을 보여주며, 마태는 이 히브리어 "네체르"(가지)와 지명 나사렛의 공명을 들어 "나사렛 사람이라 하리라 함을 이루려 함이더라"(마 2:23)고 기록합니다.</span></li>
+      <li><span class="tag">둘째</span><span>11:2 "여호와의 영... 지혜와 총명의 영이요 모략과 재능의 영이요 지식과 여호와를 경외하는 영"이 임하는 이 장면은, 요단강에서 "하나님의 성령이 비둘기같이... 자기 위에 임하심"(마 3:16)을 보신 예수님에게서 문자 그대로 성취되며, 누가복음에서 그분은 "주의 성령이 내게 임하셨으니"(눅 4:18)라고 선포하십니다.</span></li>
+      <li><span class="tag">셋째</span><span>11:3–4 "그의 눈에 보이는 대로 심판하지 아니하며... 공의로 가난한 자를 심판하며"는 "내가 스스로 아무 것도 할 수 없노니 듣는 대로 심판하노니 나의 심판은 의로우니라"(요 5:30)는 그리스도의 자기 증언과 정확히 맞닿으며, "공의로 세상을 심판"(행 17:31)하실 마지막 날을 예고합니다.</span></li>
+      <li><span class="tag">넷째</span><span>11:6–9의 이리와 어린 양, 사자와 소가 함께 있는 평화는 "피조물이 다 이제까지 함께 탄식하며... 썩어짐의 종 노릇 한 데서 해방되어 영광의 자유에 이르는"(롬 8:21–22) 소망의 원형이며, 요한계시록의 새 하늘과 새 땅(계 21:1–4)에서 완성됩니다.</span></li>
+      <li><span class="tag">다섯째</span><span>11:10 "이새의 뿌리에서 한 싹이 나서 만민의 기치로 설 것이요 열방이 그에게로 돌아오리니"는 바울이 그대로 인용해 "이새의 뿌리 곧 열방을 다스리기 위하여 일어나는 이가 있으리니 열방이 그에게 소망을 두리라"(롬 15:12)며 이방인 구원의 근거로 삼습니다.</span></li>
+      <li><span class="tag">여섯째</span><span>11:11–16의 바다와 강을 마르게 하시고 큰 길을 내시는 "두 번째" 출애굽 이미지는 이사야 후반부의 새 출애굽 주제(사 43:16–19)로 이어지고, 마침내 "다른 이로써는 구원을 받을 수 없나니"(행 4:12)라는 유일한 길에서 완성됩니다.</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 그루터기에서 시작해 만민을 향한 기치로, 다시 흩어진 자들을 향한 새 출애굽으로 확장되는 이 본문의 궤적은, 하나님의 구속이 한 가문의 회복에서 멈추지 않고 마침내 온 세상을 덮는 지식과 평화로 완성됨을 보여주는 구속사 전체의 축소판입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>11:1의 "줄기"(히, 게자)는 베어진 나무의 밑동을 가리키는 단어로, 10:33–34의 벌목 심판과 문학적으로 직접 이어짐.</li>
+        <li>11:2에서 임하는 영의 여섯 속성(지혜/총명/모략/재능/지식/경외)은 훗날 "성령의 일곱 은사" 전통의 근거가 되며, 칠십인역에서 "경외"가 두 번 옮겨지며 일곱으로 늘어남.</li>
+        <li>11:6–9의 동물 짝짓기(이리–어린양, 표범–어린염소, 사자–소)는 창세기 1장 창조 질서의 회복을 그리는 문학적 장치로 읽힘.</li>
+        <li>11:11의 "다시"(히, 쉐니트)는 출애굽을 "첫 번째" 구원으로 전제하고 앞으로 있을 구원을 "두 번째"로 명시하는 핵심 부사.</li>
+        <li>11:12–14은 남북 왕국 분열(에브라임/유다) 이후의 오랜 적대가 종말론적 회복에서 완전히 해소됨을 노래하는, 심판 신탁(1–10장) 뒤에 놓인 구원 신탁의 전환점.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>우리는 종종 자신의 삶이나 공동체가 잘려나간 그루터기처럼 느껴질 때, 스스로 무언가를 다시 세워야 한다는 조급함에 사로잡힙니다 — 더 노력해서, 더 잘해서, 잃어버린 것을 되찾아야 한다는 압박입니다. 그러나 본문은 그 순이 사람의 노력이 아니라 하나님이 친히 나게 하시는 것이라고 말합니다. 은혜는 내가 그루터기에서 무언가를 만들어내라고 다그치지 않고, 이미 그 뿌리에서 하나님이 순을 내고 계심을 보게 합니다. 이리와 어린 양이 함께 눕는 평화도 내가 애써 만드는 것이 아니라, 여호와를 아는 지식이 충만할 때 임하는 선물입니다.</p>
+    <ul class="apply-list">
+      <li>오늘 내 삶이나 관계가 잘려나간 것처럼 느껴진다면, 스스로 복구하려 애쓰기 전에 하나님이 이미 심어두신 뿌리를 신뢰하며 잠시 멈춥니다.</li>
+      <li>내가 지금 판단하고 있는 누군가를 "보이는 대로, 들리는 대로"가 아니라 조금 더 너그러운 눈으로 다시 보려고 합니다.</li>
+      <li>화해가 요원해 보이는 관계 하나를 떠올리며, 에브라임과 유다처럼 그 오랜 반목도 하나님 안에서 풀릴 수 있음을 오늘 하루 붙잡습니다.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">잘려나간 그루터기는 끝이 아니라, 하나님이 순을 내시는 자리다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>최근 내 삶이나 공동체에서 "이미 끝났다"고 느꼈던 자리가 있다면 나눠봅시다. 오늘 본문은 그 자리를 어떻게 다시 보게 하나요?</li>
+      <li>이리와 어린 양이 함께 눕는 평화(11:6–9)처럼, 지금 화해가 불가능하다고 여기는 관계가 있다면 무엇인가요? 그 관계를 하나님께 어떻게 맡길 수 있을까요?</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 잘려나간 것 같은 제 삶의 자리에서도 주께서 순을 내고 계심을 믿게 하소서. 보이는 대로 판단하지 않고 주의 공의와 평화를 구하며, 화해가 멀어 보이는 관계까지도 주의 손에 맡기게 하소서. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(이사야 11:1–11:16). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
