@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.07.31 (금)</span>
+      <span class="dot">·</span><span>남은 자들의 찬양</span>
+    </div>
+    <h1 class="ref">두려움 없는 자의 노래, 만국을 향한 선포<span class="range">이사야(Isaiah) 12:1–12:6</span></h1>
+    <p class="hook">
+      진노가 돌아선 자리에서 위로가 시작된다(12:1)<br>
+      두려움 없는 자의 노래는 구원 그 자체에서 흘러나온다(12:2)<br>
+      기쁨으로 긷는 물은 우물이 아니라 구원에서 솟는다(12:3)<br>
+      홀로 부르던 노래가 온 땅을 향한 선포로 커진다(12:4–6).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">7장부터 시작된 임마누엘 예언의 큰 단락(7–12장)이 오늘 본문에서 마침표를 찍습니다. 심판 신탁으로 가득했던 그 여정은 절망이 아니라 노래로 끝납니다 — 짧은 여섯 절이지만, 이 노래가 지금까지의 모든 심판을 되돌아보는 렌즈가 됩니다.</p>
+    <p>1절, "그 날에 네가 말하기를 여호와여 주께서 전에는 내게 노하셨사오나 이제는 주의 진노가 돌아섰고 또 주께서 나를 안위하시오니 내가 주께 감사하겠나이다." 이 고백은 변명하지 않습니다. "전에는 내게 노하셨사오나" — 진노가 부당했다고 말하지 않고, 다만 "이제는"이라는 한마디로 그 진노가 돌아섰음을 노래합니다. 안위(위로)는 심판이 없었던 척하는 데서 오지 않고, 심판이 끝났음을 정직하게 인정하는 데서 옵니다.</p>
+    <p>2절은 이 노래의 중심입니다. "보라 하나님은 나의 구원이시라 내가 신뢰하고 두려움이 없으리니 주 여호와는 나의 힘이시며 나의 노래시며 나의 구원이심이라." "나의 힘이시며 나의 노래시며 나의 구원"이라는 이 표현은 홍해를 건넌 직후 모세가 불렀던 노래(출 15:2)를 거의 그대로 되울립니다. 두려움 없음의 근거는 상황이 안전해졌다는 판단이 아니라, "여호와는 나의"라는 소유격 고백 자체입니다.</p>
+    <p>3절, "그러므로 너희가 기쁨으로 구원의 우물들에서 물을 길으리로다." 노래는 여기서 손끝의 동작으로 내려옵니다. 구원은 추상적 개념이 아니라 매일 물을 긷듯 길어 올리는 실제적인 것입니다. 그리고 4–6절, 노래는 "나"에서 "너희"로, 개인의 감사에서 공동체의 선포로 확장됩니다. "여호와께 감사하라 그의 이름을 부르며 그의 행하심을 만국 중에 선포하며... 여호와를 찬송할 것은 극히 아름다운 일을 하셨음이니 이를 온 땅에 알게 할지어다." 혼자만의 안위로 끝나지 않고 열방을 향해 나가는 이 흐름은 11장에서 이미 본 "열방이 그에게로 돌아오리니"(11:10)의 노래 버전입니다. 그리고 마지막 절, "시온의 주민아 소리 높여 부를지어다 이스라엘의 거룩하신 이가 너희 중에서 크심이니라" — "너희 중에서"라는 이 말이 7장의 임마누엘("하나님이 우리와 함께 계시다", 7:14) 예언 전체를 노래로 완결시킵니다. 진노가 돌아선 자리에, 하나님은 멀리서가 아니라 그들 "가운데서" 크신 분으로 계십니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">진노가 돌아섬, 출애굽 노래의 인용, 구원의 우물, 열방을 향한 선포, 그리고 "너희 중에" 계신 거룩하신 이 — 오늘 본문의 다섯 움직임은 모두 성경 전체를 관통하는 구속의 노래로 이어집니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>12:1 "주의 진노가 돌아섰고"는 마땅히 받아야 할 진노가 다른 곳으로 옮겨졌다는 뜻이며, 이 진노의 최종적 향방은 "그가 찔림은 우리의 허물 때문이요... 그가 징계를 받으므로 우리는 평화를 누리고"(사 53:5)에서, 그리고 "이제 우리가 그의 피로 말미암아 의롭다 하심을 받았으니... 그로 말미암아 진노하심에서 구원을 받을 것이니"(롬 5:9)에서 온전히 드러납니다.</span></li>
+      <li><span class="tag">둘째</span><span>12:2 "나의 힘이시며 나의 노래시며 나의 구원이심이라"는 출애굽기 15:2 모세의 바다 노래를 그대로 인용한 것이며, 같은 표현이 다시 "여호와는 나의 능력과 찬송이시며 또 나의 구원이 되셨도다"(시 118:14)에 등장하는데, 이 시편은 예수님의 예루살렘 입성 때 무리가 외친 바로 그 본문("호산나... 주의 이름으로 오시는 이여", 시 118:25–26/마 21:9)입니다.</span></li>
+      <li><span class="tag">셋째</span><span>12:3 "구원의 우물들에서 물을 길으리로다"는 유대 전통에서 초막절 마지막 날 성전에서 물을 긷던 예식의 배경 본문이 되었고, 예수님은 바로 그 초막절 명절에 "누구든지 목마르거든 내게로 와서 마시라"(요 7:37)고 선포하시며 이 우물의 실체가 자신임을 드러내십니다.</span></li>
+      <li><span class="tag">넷째</span><span>12:4 "그의 이름을 부르며 그의 행하심을 만국 중에 선포하며"는 "그 영광을 만국 중에, 그의 기이한 행적을 만민 중에 선포할지어다"(시 96:3)의 예배 언어와 같은 결이며, 마침내 "너희는 가서 모든 민족을 제자로 삼아"(마 28:19)라는 그리스도의 지상명령으로 확장됩니다.</span></li>
+      <li><span class="tag">다섯째</span><span>12:6 "이스라엘의 거룩하신 이가 너희 중에서 크심이니라"의 "너희 중에"(히, 베키르베크)라는 표현은 7:14 "임마누엘"(하나님이 우리와 함께)과 8:8,10의 "하나님이 우리와 함께 계심이라"를 노래로 완결시키며, 이는 "말씀이 육신이 되어 우리 가운데 거하시매"(요 1:14)에서 육신을 입고 성취됩니다.</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 7–12장 전체를 마무리하는 이 짧은 노래는, 진노가 돌아선 자리에서 시작해 출애굽의 구원을 되울리고, 마침내 열방을 향한 선포로 나아가는 하나님의 구속사 전체를 압축한 찬양이며, 요한계시록에서 어린 양의 노래와 나란히 불릴 "모세의 노래"(계 15:3–4)의 예표이기도 합니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>12장은 임마누엘서(7–12장)를 마무리하는 감사시로, 심판 신탁 다음에 놓인 찬양이며 13장부터는 열방 심판 신탁으로 전환됨.</li>
+        <li>"그 날에"라는 표현이 1절과 4절에 반복되며 본문을 두 연으로 구분: 개인적 찬양(1–3절)과 공동체적 선포(4–6절).</li>
+        <li>2절 "나의 힘이시며 나의 노래시며 나의 구원"은 출애굽기 15:2를 거의 문자 그대로 인용한 것으로, 히브리어 원문의 어순과 단어가 상당 부분 일치함.</li>
+        <li>3절 "우물들"(복수형)은 실제 우물이 아니라 구원을 가리키는 은유이며, 후대 유대 전통의 초막절 '물 긷는 예식'(시므핫 벳 하쇼에바)의 배경 본문으로 이해됨.</li>
+        <li>6절 "너희 중에서 크심이니라"는 7–8장 임마누엘 신탁의 언어를 그대로 이어받아 이 단락을 언어적으로 완결짓는 수미상관 구조.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>우리는 두려움이 사라지길 바랄 때, 흔히 상황이 먼저 바뀌어야 안심할 수 있다고 생각합니다 — 문제가 해결되고, 관계가 회복되고, 형편이 나아져야 비로소 두려움 없이 살 수 있다는 조급함입니다. 그러나 본문의 고백은 순서가 다릅니다. "하나님은 나의 구원이시라 내가 신뢰하고 두려움이 없으리니"는 상황의 변화가 아니라 이미 선포된 사실에서 시작합니다. 은혜는 내가 안전을 만들어내야 노래할 수 있다고 다그치지 않고, 이미 나의 힘과 노래와 구원이 되신 분을 오늘 그대로 신뢰하게 합니다.</p>
+    <ul class="apply-list">
+      <li>오늘 두려운 상황을 마주할 때, 상황이 바뀌기를 기다리기 전에 "주는 나의 힘, 나의 노래, 나의 구원이시라"고 먼저 고백합니다.</li>
+      <li>기쁨을 형편이 나아지는 조건에 걸어두지 않고, 이미 있는 구원의 우물에서 오늘 하나 감사를 길어 올립니다.</li>
+      <li>나만 알고 있는 하나님의 행하심 하나를 오늘 누군가에게 짧게 나눕니다.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">두려움 없음은 상황이 바뀐 증거가 아니라, 주가 나의 구원이시라는 이미 선포된 사실이다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>지금 "두려움 없이" 살고 싶은 상황이 있다면 무엇인가요? 2절의 고백을 그 상황에 어떻게 적용할 수 있을까요?</li>
+      <li>최근 하나님이 행하신 일 중 아직 아무에게도 나누지 않은 것이 있다면, 오늘 이 자리에서 짧게 나눠봅시다.</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 진노가 돌아선 자리에 서게 하시니 감사합니다. 상황이 아니라 주님 자신을 나의 힘과 노래와 구원으로 삼게 하시고, 오늘 받은 은혜를 작게라도 나누는 입술 되게 하소서. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(이사야 12:1–12:6). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
