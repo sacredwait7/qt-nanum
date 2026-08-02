@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.08.02 (일)</span>
+      <span class="dot">·</span><span>별에서 구덩이로</span>
+    </div>
+    <h1 class="ref">스스로 오르려던 자, 이미 낮아지신 이<span class="range">이사야(Isaiah) 14:1–14:23</span></h1>
+    <p class="hook">
+      야곱을 긍휼히 여기시는 손이 먼저 움직인다(14:1–2)<br>
+      온 땅이 조용하고 평온하여 소리 높여 노래하는 그 날이 온다(14:7)<br>
+      스스로 하늘에 오르려던 자, 구덩이 맨 밑으로 떨어진다(14:12–15)<br>
+      땅을 진동시키던 자도 결국 벌레의 이불을 덮는다(14:9–11).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">13장에서 시작된 바벨론 심판 신탁이 오늘 본문에서 절정에 이릅니다. 그런데 이 장은 심판의 언어로 시작하지 않습니다. 먼저 움직이는 것은 하나님의 긍휼입니다 — 압제자를 향한 조롱시(마샬)는 억눌린 자를 향한 회복의 약속 위에서만 노래될 수 있기 때문입니다.</p>
+    <p>1–2절, "여호와께서 야곱을 긍휼히 여기시며 다시 이스라엘을 택하여 그들의 땅에 두시리니 나그네 된 자가 야곱 족속에게 가담하여 그들과 연합할 것이며... 사로잡던 자를 사로잡고 압박하던 자를 주관하리라." 눈여겨볼 것은 순서입니다. 바벨론의 몰락을 노래하기 전에, 본문은 먼저 야곱을 "긍휼히 여기시며 다시 택하시는" 손을 보여줍니다. 심판은 복수의 쾌감을 위해서가 아니라, 이미 시작된 회복의 결과로 뒤따라오는 것입니다.</p>
+    <p>3–8절은 그 회복의 날에 부를 노래를 예비합니다. "여호와께서 너를 슬픔과 곤고와 및 네가 수고하던 고역에서 놓으시고 안식을 주시는 날에 네가 이 노래를 지어 바벨론 왕을 조롱하여 이르기를 학대하던 자가 어찌 그리 그쳤으며 강포한 성이 어찌 그리 폐하였는고." 그리고 놀랍게도 자연까지 이 노래에 합류합니다. "온 땅이 안식하고 평온하며 소리 높여 노래하는도다 향나무와 레바논 백향목도 너로 말미암아 기뻐하여 이르기를 네가 넘어졌은즉 올라와서 우리를 베어 버릴 자가 없다 하는도다." 사람만이 아니라 베어질까 떨던 나무들조차 안식을 노래하는 이 장면은, 압제가 사람뿐 아니라 하나님이 지으신 온 세상을 짓눌러 왔음을 드러냅니다.</p>
+    <p>9–11절, 조롱은 이제 무대를 스올로 옮깁니다. "아래의 스올이 너로 말미암아 소동하여 네가 오는 것을 영접하되... 열방의 모든 왕들이 다 그들의 보좌에서 일어서게 함이라... 네 영화가 스올에 떨어졌음이여... 구더기가 네 아래에 깔림이여 지렁이가 너를 덮었도다." 땅을 진동시키던 자가 마지막에 덮는 것은 왕좌의 금이 아니라 벌레의 이불입니다. 그리고 본문의 정점, 12–15절이 그 이유를 폭로합니다. "너 아침의 아들 계명성이여 어찌 그리 하늘에서 떨어졌으며... 네가 네 마음에 이르기를 내가 하늘에 올라 하나님의 뭇 별 위에 나의 보좌를 높이리라... 내가 가장 높은 구름에 올라 지극히 높은 자와 비기리라 하도다 그러나 이제 네가 스올 곧 구덩이 맨 밑에 떨어짐을 당하리로다." 다섯 번 반복되는 "내가... 하리라"는 인간 교만의 가장 순수한 원형입니다 — 스스로 하나님의 자리에 오르려는 마음. 그 마음이 도달하는 곳은 하늘이 아니라 구덩이 맨 밑입니다.</p>
+    <p>16–23절은 그 몰락의 완전함을 그립니다. 사람들은 그를 보며 "이 사람이 땅을 진동시키며 열국을 놀라게 하며... 세계를 황무케 하며 성읍을 파괴하며 그에게 사로잡힌 자들을 집으로 놓아 보내지 아니하던 자가 아니냐" 수군거리고, 그는 다른 왕들처럼 영예로운 무덤에 눕지 못한 채 "밟힌 시체 같이" 버려집니다. 이 모든 것을 지탱하는 근거는 22–23절, "나 만군의 여호와가 말하였느니라"는 신적 선언입니다. 우리가 이 장의 무서운 몰락을 두려움 없이 읽을 수 있는 것은, 이 노래가 애초에 압제에서 벗어난 자들의 안식(3절)을 위해 주어졌기 때문입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">야곱을 향한 긍휼과 택하심, 안식의 노래, 스올로 내려가는 왕, 하늘에 오르려던 교만, 그리고 땅을 진동시키던 자의 몰락 — 오늘 본문의 다섯 장면은 모두 그리스도 안에서 완결되는 구속사의 흐름 위에 놓여 있습니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>14:12 "너 아침의 아들 계명성이여 어찌 그리 하늘에서 떨어졌으며"라는 이 언어는 오랜 교회 전통에서 타락한 영적 세력의 몰락을 가리키는 이미지로 읽혀왔으며, 예수님이 "사탄이 하늘로부터 번개같이 떨어지는 것을 내가 보았노라"(눅 10:18)고 말씀하신 장면, 그리고 에덴에서 "너희가 하나님과 같이 되리라"(창 3:5)던 뱀의 유혹이 결국 같은 교만의 계보임을 보여줍니다.</span></li>
+      <li><span class="tag">둘째</span><span>14:13–14 "내가 하늘에 올라... 지극히 높은 자와 비기리라"는 다섯 겹의 자기 높임은 인간 교만의 궁극적 원형이며, 이는 정확히 반대 방향으로 움직이신 그리스도—"자기를 낮추시고 죽기까지 복종하셨으니"(빌 2:8)—와 정면으로 대조됩니다. 스스로 오르려 한 자는 떨어졌고, 스스로 내려가신 이는 "지극히 높이"(빌 2:9) 되셨습니다.</span></li>
+      <li><span class="tag">셋째</span><span>14:15 "그러나 이제 네가 스올 곧 구덩이 맨 밑에 떨어짐을 당하리로다"는 심판으로 끌려 내려가는 왕의 모습이며, 이는 자원하여 스올(음부)에 내려가셨다가 "하나님이 그를 살리사 사망의 고통에서 풀어 놓으셨으니 이는 그가 사망에게 매여 있을 수 없었음이라"(행 2:24)로 다시 올라오신 그리스도의 죽음과 부활을 역으로 비추는 거울입니다.</span></li>
+      <li><span class="tag">넷째</span><span>14:1–2 "여호와께서 야곱을 긍휼히 여기시며 다시 이스라엘을 택하여"라는 회복의 약속은 포로 이후에도 계속되어 "이스라엘의 남은 자를 반드시 구원하시리라"(롬 11:5, 26)는 바울의 소망으로 이어지며, 심판 신탁 한복판에서도 하나님의 언약적 신실하심이 결코 취소되지 않음을 보여줍니다.</span></li>
+      <li><span class="tag">다섯째</span><span>14:3 "슬픔과 곤고와 고역에서 놓으시고 안식을 주시는 날"이라는 표현은 출애굽의 안식 개념을 잇는 것으로, 궁극적으로 "그런즉 안식할 때가 하나님의 백성에게 남아 있도다"(히 4:9)라는 그리스도 안의 완전한 안식으로 성취됩니다.</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 오늘 본문은 한 폭군의 몰락 이야기를 넘어, 스스로 높아지려는 모든 교만이 결국 무너지고, 오직 자원하여 낮아지셨다가 부활하신 그리스도만이 참된 높임을 받으신다는 구속사 전체의 패턴을 보여주는 본문입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>1–2절의 이스라엘 회복 약속은 열방 심판 신탁(13–23장) 한복판에 놓여, 심판의 목적이 결국 언약 백성의 회복임을 구조적으로 보여줌.</li>
+        <li>12절 "계명성"(히, 헬렐 벤 샤하르 — "빛나는 자, 새벽의 아들")은 라틴어 불가타 역에서 "루시퍼"(빛을 나르는 자)로 옮겨졌고, 이 번역이 후대 그리스도교 전통에서 사탄을 가리키는 이름으로 굳어졌으나, 본문의 일차적 대상은 역사적 바벨론 왕임.</li>
+        <li>문학 구조: 1–2절(이스라엘 회복의 틀) — 3–21절(바벨론 왕을 향한 조롱시 본론) — 22–23절("나 만군의 여호와가 말하였느니라"는 신탁 종결구)의 삼단 구성.</li>
+        <li>이 조롱시(마샬) 장르는 겔 28:12–19의 두로 왕 신탁과 매우 유사한 패턴("높음 → 교만 → 추락")을 공유하는 예언서 내 대표적 병행 본문임.</li>
+        <li>어조상 이 장은 13장의 엄중한 신탁 선포와 달리 다분히 극적·풍자적이며, 죽은 왕들이 스올에서 새로 온 왕을 조롱하며 맞이하는 장면(9–11절)은 고대 근동의 장례 애가 양식을 뒤집어 사용한 것으로 읽힘.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>이 본문을 읽을 때 우리 마음에 슬며시 자리 잡는 것은, "나도 더 높아져야 안전하다"는 조급함입니다 — 누군가에게 인정받으려면, 잊히지 않으려면, 스스로 무언가를 쌓아 올려 증명해야 한다는 무의식적 압박입니다. 그것이 바로 바벨론 왕이 마음에 품었던 "내가 하리라"의 축소판입니다. 그러나 본문의 은혜는 그 계산법을 완전히 뒤집습니다. 이 노래가 시작되기도 전에 이미 "여호와께서 야곱을 긍휼히 여기시며 다시 택하셨다"(1절)는 사실이 먼저 선포됩니다. 나의 자리는 내가 올라가서 쟁취하는 것이 아니라, 이미 긍휼히 여기심을 받고 택하심을 받은 자리입니다.</p>
+    <ul class="apply-list">
+      <li>남과 비교하며 "더 높이 올라가야" 인정받는다는 조급함이 들 때, 이미 나를 긍휼히 여기시고 택하신 분을 오늘 다시 기억합니다(1절).</li>
+      <li>부당한 대우를 받을 때 내가 직접 되갚아야 한다는 압박 대신, 안식을 주시는 여호와께 그 무거운 계산을 맡겨 드립니다(3절).</li>
+      <li>오늘 작아 보이는 순간에도 스스로 높아지려 애쓰지 않고, 낮아지셨다가 높임 받으신 그리스도 안에서 이미 정해진 나의 자리를 확인합니다.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">하늘에 오르려던 자는 구덩이 맨 밑으로 떨어졌으나, 스스로 낮아지신 이는 영원히 높임을 받으셨다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>"내가 하늘에 올라... 지극히 높은 자와 비기리라"(13–14절)는 교만이 내 삶에서는 어떤 작은 모습으로 나타나나요 — 나는 요즘 무엇으로 "더 높아지려" 하고 있나요?</li>
+      <li>"야곱을 긍휼히 여기시며 다시 택하신다"(1절)는 약속이, 내가 스스로를 증명하지 않아도 되는 이유를 어떻게 설명해 주나요? 서로의 이야기를 나눠봅시다.</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 스스로 높아지려 했던 제 마음의 자리를 보게 하시고, 이미 저를 긍휼히 여기시고 택하신 은혜를 기억하게 하소서. 안식을 주시는 주님께 제가 감당할 수 없는 계산들을 맡기며, 낮아지셨다가 높임 받으신 예수님을 따라 오늘도 겸손히 걷게 하소서. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(이사야 14:1–14:23). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
