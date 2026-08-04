@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.08.04 (화)</span>
+      <span class="dot">·</span><span>모압의 교만, 다윗의 보좌</span>
+    </div>
+    <h1 class="ref">교만은 거절하고, 인자하심은 열어 두신 그 자리<span class="range">이사야(Isaiah) 16:1–16:14</span></h1>
+    <p class="hook">
+      모압이 어린 양을 바치며 통치자의 자비를 구하네(16:1)<br>
+      도망자들은 아르논 나루의 떠도는 새 같아라(16:2–4)<br>
+      그러나 인자함으로 세워진 보좌엔 정의를 구하는 자가 앉으리라(16:5)<br>
+      교만이 그 헛된 자랑을 붙들다가, 스스로 그 문을 닫아버렸다(16:6).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">15장에서 시작된 모압을 향한 애가는 16장으로 넘어오며 뜻밖의 전환을 맞습니다. 무너진 나라 모압이 처음으로 살길을 구하는 목소리를 냅니다 — 그리고 그 요청이 받아들여지는가, 거절되는가를 따라 본문 전체가 움직입니다.</p>
+    <p>1절, 왕을 잃은 모압은 "이 땅 통치자에게 어린 양들을 드리되 셀라에서부터 광야를 지나 딸 시온의 산으로 보낼지니라"는 권면을 듣습니다. 조공의 양을 보내 유다 왕의 자비를 구하라는 것입니다. 2–4절은 그 처지를 더 생생히 그립니다. "모압의 딸들은 아르논 나루터에서 떠다니는 새같이, 보금자리에서 흩어진 새 새끼 같을 것이라." 그리고 시온을 향한 간청이 이어집니다. "모략을 베풀며 공의로 판결하며... 나의 쫓겨난 자들이 너와 함께 있게 하되 너는 모압의 도망한 자들의 보호처가 되고." 어제까지 원수였던 나라가 오늘은 피난처를 구하며 시온의 문을 두드립니다.</p>
+    <p>그 간청 한복판, 본문의 중심추가 5절에서 드러납니다. "인자함으로 왕위가 굳게 설 것이요 다윗의 장막에 그 위에 앉을 자가 충실함으로 판결하며 공평을 구하며 의를 신속히 행하리라." 모압이 구하는 피난처는 결국 힘 있는 나라가 아니라, 헤세드(인자함) 위에 세워진 보좌, 공의와 신실함으로 다스리는 왕입니다. 이 절이 없다면 본문은 그저 한 민족의 애원으로 끝났을 것입니다.</p>
+    <p>그러나 6절에서 반전이 옵니다. "우리가 모압의 교만을 들었나니 심히 교만하도다 그의 오만함과 자긍함과 분노가 헛되도다." 열려 있던 피난처 앞에서 모압은 끝내 자기 자랑을 내려놓지 못합니다. 그 결과 7–12절은 다시 통곡으로 돌아갑니다. "십마의 포도나무가 슬퍼하니... 니므림의 물도 황폐하였고 풀도 마르고 채소도 없어졌으므로." 풍요를 상징하던 포도주와 노래가 침묵으로 바뀝니다. 그리고 13–14절, "지금은 여호와께서 말씀하시되 삼 년 내에... 모압의 영광이 능욕을 당하리니"라는 정확한 기한이 못 박히며 본문은 끝을 맺습니다.</p>
+    <p>양을 바치며 피난처를 구하던 모압, 인자함으로 세워진 보좌, 그러나 끝내 그 문턱에서 무너진 교만 — 이 셋이 오늘 본문의 뼈대입니다. 문제는 피난처가 없었던 것이 아니라, 그 피난처 앞에서 자기 힘과 자랑을 내려놓지 못한 것입니다. 본문 자체가 그 답을 미리 마련해 두었다는 사실에서 우리는 위로를 얻습니다 — 5절의 왕위는 모압의 교만과 무관하게 여전히 인자함으로 굳게 서 있습니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">양을 바치는 조공, 인자함으로 세워진 다윗의 보좌, 원수에게까지 열린 피난처, 그 문턱에서 무너진 교만, 그리고 정한 기한 안에 이루어지는 확실한 말씀 — 오늘 본문의 다섯 장면은 모두 그리스도 안에서 완결되는 구속사의 흐름 위에 놓여 있습니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>16:5 "인자함으로 왕위가 굳게 설 것이요 다윗의 장막에 그 위에 앉을 자가 충실함으로 판결하며"는 이사야서의 대표적 메시아 예언 중 하나로, "그 정사와 평강의 더함이 무궁하며... 다윗의 왕좌와 그의 나라에 앉아서"(사 9:7)와 함께 읽히며, "다윗의 집과 그의 나라가... 네 왕위가 영원히 견고하리라"(삼하 7:16)는 언약이 마침내 그리스도 안에서 성취됨을 가리킵니다(눅 1:32-33).</span></li>
+      <li><span class="tag">둘째</span><span>16:1 모압이 어린 양을 조공으로 시온에 보내는 장면은, 훗날 이방 나라들이 예물을 들고 시온의 왕에게 나아오는 종말론적 그림(사 60:6-7, 시 72:10)의 예표이며, 동방박사들이 아기 예수께 예물을 드린 장면(마 2:11)에서 그 씨앗이 이미 싹틈을 봅니다.</span></li>
+      <li><span class="tag">셋째</span><span>16:3-4 "나의 쫓겨난 자들이 너와 함께 있게 하되... 보호처가 되어"라는 요청 — 원수였던 모압의 도망자에게까지 피난처가 되라는 이 말씀은, "원수 되었을 때에 그의 아들의 죽으심으로 하나님과 화목되었은즉"(롬 5:10), "중간에 막힌 담을 자기 육체로 허시고"(엡 2:14)라는 복음의 환대를 미리 보여주는 그림자입니다.</span></li>
+      <li><span class="tag">넷째</span><span>16:6 열려 있던 피난처 앞에서도 "그 오만함과 자긍함과 분노가 헛되도다"라며 스스로 무너진 모압의 교만은, "하나님이 교만한 자를 물리치시고 겸손한 자에게 은혜를 주신다"(약 4:6, 벧전 5:5)는 원리를 미리 보여주는 구약의 실례이며, 값없이 열린 은혜 앞에서 자기 힘을 자랑하다 그 문턱을 넘지 못하는 인간의 모습을 드러냅니다.</span></li>
+      <li><span class="tag">다섯째</span><span>16:13-14 "삼 년 내에... 모압의 영광이 능욕을 당하리니"라는 정확한 기한 규정은, 하나님의 말씀이 막연한 경고가 아니라 역사 속에서 시간표대로 성취되는 확실한 약속임을 증언하며, 그 확실성은 "주의 약속은 어떤 이가 더디다고 생각하는 것 같이 더딘 것이 아니라"(벧후 3:9)는 그리스도의 재림 약속에도 동일하게 적용됩니다.</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 오늘 본문은 한 나라의 흥망을 넘어, 인자함으로 세워진 보좌와 원수에게까지 열린 피난처, 그리고 그 앞에서 스스로 무너지는 교만을 통해 은혜가 값없이 주어지되 결코 강요되지 않는다는 구속사 전체의 패턴을 보여주는 본문입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>16장은 15장에서 시작된 모압 신탁(마사)의 후반부이며, 1–5절 간청/호소, 6–12절 교만에 대한 심판, 13–14절 기한 규정의 세 단락으로 구성됨.</li>
+        <li>5절은 이사야서 안에서 다윗 언약을 명시적으로 언급하는 대표 메시아 구절 중 하나로, 9:6-7과 함께 읽힘.</li>
+        <li>히브리어 "헤세드"(인자, 언약적 신실한 사랑)가 5절 왕위가 굳게 서는 근거로 제시되며, 통치의 기초가 힘이 아니라 헤세드임을 강조하는 핵심 낱말임.</li>
+        <li>13–14절의 "지금은... 전에 이미"와 "삼 년 내"라는 이중 시간 표지는, 오래전 주어진 이 신탁이 이제 품꾼의 정확한 연수 계산처럼 구체적 기한으로 재확정됨을 보여줌.</li>
+        <li>8–10절 "십마의 포도나무" 애가는 풍요의 상징인 포도주와 노래가 침묵으로 바뀌는 모습을 통해 심판의 정서적 무게를 더함.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>이 본문을 읽을 때 우리 마음에 슬며시 자리 잡는 것은, 도움이 필요한 순간에도 자존심 때문에 손을 내밀지 못하는 완고함입니다 — 모압이 피난처가 열려 있는데도 "그 오만함과 자긍함과 분노"(6절) 때문에 끝내 그 문턱을 넘지 못했던 것처럼, 우리도 스스로 무언가를 증명한 뒤에야 도움을 받을 자격이 있다고 여기려 합니다. 그러나 본문의 은혜는 그 계산법 자체를 내려놓게 합니다. 그 보좌는 내가 잘해서 얻어내는 자리가 아니라, "인자함으로"(5절) 이미 굳게 세워진 자리입니다. 내가 자격을 갖추어야 할 피난처가 아니라, 값없이 열려 있는 피난처로 오늘 그냥 걸어 들어가면 됩니다.</p>
+    <ul class="apply-list">
+      <li>오늘 내가 이룬 것으로 안전을 증명하려 하지 않고, 이미 인자함으로 굳게 세워진 그 보좌 아래 숨습니다(16:5).</li>
+      <li>도움이 필요할 때 자존심을 내세우다 무너지지 않고, 열려 있는 피난처로 오늘 걸어 들어갑니다(16:3-4).</li>
+      <li>내 힘과 자랑이 아니라, 값없이 주어진 자비를 오늘 하루의 근거로 삼습니다(16:6).</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">교만이 거절한 그 피난처를, 은혜는 오늘도 값없이 열어 두신다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>"모압의 교만... 그 오만함과 자긍함과 분노가 헛되도다"(16:6)처럼, 도움이 필요한 순간에도 자존심 때문에 손을 내밀지 못했던 경험이 있다면 나눠봅시다.</li>
+      <li>"인자함으로 왕위가 굳게 설 것이요... 공평을 구하며 의를 신속히 행하리라"(16:5)는 다윗 언약의 약속이, 오늘 내가 신뢰하는 안전의 근거를 어떻게 바꾸어 놓나요?</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 제 자존심이 주님이 열어 두신 피난처를 거절하지 않게 하시고, 인자함으로 세워진 그 보좌 아래 오늘도 나아가게 하소서. 교만이 아니라 은혜를 붙들며 살게 하시고, 정한 때에 반드시 이루시는 주님의 신실하심을 신뢰하게 하소서. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(이사야 16:1–16:14). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
