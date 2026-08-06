@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.08.06 (목)</span>
+      <span class="dot">·</span><span>조용히 감찰하시는 하나님</span>
+    </div>
+    <h1 class="ref">분주한 외교 위에, 종용히 감찰하시는 그 눈길<span class="range">이사야(Isaiah) 18:1–19:15</span></h1>
+    <p class="hook">
+      구스의 빠른 사자들이 파피루스 배를 타고 물 위를 분주히 오간다(18:1–2)<br>
+      그러나 여호와는 맑은 햇볕같이, 이슬 구름같이 종용히 감찰하신다(18:4)<br>
+      애굽의 우상은 떨고, 지혜자들의 모략은 어리석은 것이 되어버린다(19:1–14)<br>
+      머리도 꼬리도 손쓸 수 없는 그 자리에, 조용히 지켜보시던 손이 움직이신다(19:15).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">18장과 19장은 각각 구스(에티오피아)와 애굽을 향한 신탁이지만, 두 장을 나란히 놓고 읽으면 하나의 대조가 선명해집니다 — 강대국들의 분주한 외교와 애굽의 무너지는 지혜, 그 모든 소란 위에 조용히 앉아 계신 하나님의 시선입니다.</p>
+    <p>18:1–2, "구스의 강 건너편 날개 치는 소리 나는 땅... 갈대 배를 타고 물 위로 사신을 보내며 이르기를 빠른 사자들아 너희는 가라." 남유다 주변 강대국들이 앗수르에 맞서기 위해 분주히 사신을 주고받는 모습입니다. 3절은 온 세상을 향해 "산들 위에 기치를 세우거든 너희는 보라 나팔을 불거든 너희는 들으라"고 명합니다. 세상의 시선은 온통 그 외교전과 그 신호에 쏠려 있습니다.</p>
+    <p>그러나 본문의 무게중심은 그 소란이 아니라 4절에서 드러납니다. "여호와께서 내게 이르시되 내가 나의 처소에서 종용히 감찰함이 쬐이는 일광 같고 가을 더위에 운무 같도다." 세상이 분주히 사신을 보내는 그 순간에도, 하나님은 조급히 반응하지 않으시고 맑은 볕처럼, 이슬 구름처럼 조용히 지켜보십니다. 5–6절은 그 기다림이 무기력이 아님을 보여줍니다 — 추수 때가 이르면 "낫으로 그 연한 가지를 베어 버리며 자라나는 가지를 찍어 버리"시듯, 정한 때에 정확히 손을 대십니다. 조용함과 무능함은 다릅니다.</p>
+    <p>19장은 그 조용한 감찰이 실제로 움직이시는 장면입니다. "여호와께서 빠른 구름을 타고 애굽에 임하시리니 애굽의 우상들이 그 앞에서 떨겠고 애굽인의 마음이 그 속에서 녹으리로다"(19:1). 강대국의 자랑이던 우상도, 통치자의 마음도 그 앞에서 무력해집니다. 2–3절, 애굽은 스스로 싸우는 나라가 됩니다 — "그들이 서로 치리니... 그 정신이 그 속에서 쇠약하리니." 그리고 11–14절, 바로의 가장 지혜로운 모사들조차 "그 계교가 어리석은 것이 되었도다"라는 판정을 받습니다. 세상이 의지하던 것 — 우상, 정신력, 지혜 — 이 순서대로 무너집니다.</p>
+    <p>그 끝에 15절, "머리나 꼬리나 종려나무 가지나 갈대나 애굽을 위하여 이룰 만한 일이 없으리라." 위로부터 아래까지, 지도자부터 백성까지 손쓸 방법이 없는 자리입니다. 그러나 이 본문 전체를 떠받치는 것은 4절의 그 조용한 눈길입니다 — 애굽의 모든 대책이 바닥났을 때조차, 처음부터 종용히 감찰하고 계셨던 그 하나님은 여전히 그 자리에서 움직이고 계십니다. 소란이 잦아든 자리가 곧 그분의 손이 드러나는 자리입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">조용히 감찰하시는 눈길, 정한 때에 베어 내시는 손, 구름을 타고 임하시는 걸음, 무너지는 지혜, 그리고 손쓸 수 없는 자리 — 오늘 본문의 다섯 장면은 모두 그리스도 안에서 완결되는 실을 지니고 있습니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>18:4 "종용히 감찰"하시는 하나님의 여유로운 주권은 "하늘에 계신 이가 웃으시리로다"(시 2:4)와 같은 결의 말씀이며, 세상의 분주한 계략 위에서 조급하지 않으신 이 기다림은 "때가 차매 하나님이 그 아들을 보내사"(갈 4:4)라는 정확한 때를 따라 움직이시는 하나님의 방식의 예표입니다.</span></li>
+      <li><span class="tag">둘째</span><span>18:7 이 신탁은 "그 때에... 백성이 만군의 여호와께 예물을 드리러 시온 산 곳으로 이르리라"는 구절로 이어지는데, 구스(에티오피아)가 스스로 예물을 들고 시온께 나아온다는 이 그림은 "구스인은 하나님을 향하여 손을 들리로다"(시 68:31)의 반향이며, 실제로 에티오피아 내시가 복음을 받아들이는 사도행전 8장의 장면(행 8:26-39)에서 그 첫 열매를 봅니다.</span></li>
+      <li><span class="tag">셋째</span><span>19:1 "여호와께서 빠른 구름을 타고 애굽에 임하시리니 우상들이 떨겠고"라는 이 형상은 그리스도께서 "구름을 타고 오시리라"(마 24:30, 계 1:7)는 재림의 언어와 같으며, 그분 앞에서 모든 거짓 신들이 아무것도 아닌 것으로 드러나는 원리(고전 8:4-6)를 미리 보여줍니다.</span></li>
+      <li><span class="tag">넷째</span><span>19:11-14 바로의 지혜로운 모사들의 계교가 어리석은 것이 되었다는 이 심판은 "지혜 있는 자가 어디 있느냐... 하나님께서 이 세상의 지혜를 미련하게 하신 것이 아니냐"(고전 1:20)는 사도의 선포와 정확히 맞물리며, 십자가 앞에서 무너지는 인간 지혜의 원형을 보여줍니다.</span></li>
+      <li><span class="tag">다섯째</span><span>19:15 "머리나 꼬리나... 애굽을 위하여 이룰 만한 일이 없으리라"는 총체적 무력함은 "의인은 없나니 하나도 없으며... 깨닫는 자도 없고"(롬 3:10-11)의 구약적 실례이며, 바로 그 막다른 자리를 향해 이어지는 말씀 — "그들이 그 압박하는 자로 말미암아 여호와께 부르짖겠고 여호와께서... 한 구원자와 용사를 보내어 그들을 건지시리라"(19:20) — 안에서 애굽 같은 이방 땅에조차 구원자를 보내시는 은혜로 완결됩니다.</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 오늘 본문은 강대국의 우상과 지혜가 차례로 무너지는 심판의 신탁이지만, 그 밑바닥에는 처음부터 끝까지 조용히 감찰하며 정한 때에 반드시 구원자를 보내시는 하나님의 신실하심이 흐르고 있으며, 이는 유다뿐 아니라 구스와 애굽까지 품으시는 구속사 전체의 넓이를 보여줍니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>18장(구스 신탁)과 19장(애굽 신탁)은 모두 앗수르에 대항하기 위해 남유다가 의지하려 했던 당대 강대국들을 향한 것으로, 활발했던 구스-애굽 동맹의 외교전이 역사적 배경.</li>
+        <li>18:2의 "갈대 배"는 나일강 상류의 파피루스로 만든 경량 배를 가리키며, 당시 사절 왕래의 신속함을 보여주는 구체적 디테일.</li>
+        <li>히브리어로 18:4 "종용히 감찰함"은 "쉬다, 조용히 머물다"를 뜻하는 동사가 쓰여, 인간의 분주한 외교와 대비되는 하나님의 여유로운 주권을 강조.</li>
+        <li>19장은 우상 심판(1-4절)에서 자연재해로 인한 경제 붕괴(5-10절)를 거쳐 지혜자들의 몰락(11-15절)으로, 정치·경제·지성의 순서로 범위를 좁혀가며 애굽 전체의 무력함을 드러냄.</li>
+        <li>19:15 "머리나 꼬리나 종려나무 가지나 갈대나"는 9:14-15에서 지도자와 백성 전체를 가리키던 관용구의 재사용으로, 사회 전 계층의 무력함을 표현.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>이 본문이 건드리는 우리의 뿌리는, 상황이 불안할수록 스스로 더 분주히 움직여 대책을 세워야 안심이 된다는 조바심입니다 — 구스가 빠른 사자를 보내고 애굽의 모사들이 계교를 짜냈던 것처럼, 우리도 불확실한 앞날 앞에서 내 지혜와 발걸음으로 상황을 통제하려 합니다. 그러나 본문은 그 모든 분주함보다 앞서 이미 조용히 감찰하고 계신 하나님이 계심을 보여줍니다(18:4). 내가 더 빨리, 더 많이 움직여야 안전해지는 것이 아니라, 이미 정한 때를 알고 계신 그분의 시선 안에 있다는 것이 참된 안전입니다. 애굽의 지혜가 바닥났을 때에도 구원자를 보내시는 손이 움직였듯이, 내 대책이 다한 자리는 실패가 아니라 그 손이 드러나는 자리입니다.</p>
+    <ul class="apply-list">
+      <li>오늘 내 계획이 분주히 돌아갈 때, 이미 종용히 감찰하고 계신 하나님의 시선을 신뢰하며 조급함을 내려놓습니다(18:4).</li>
+      <li>내 지혜와 대책이 어리석은 것으로 드러나는 날에도, 그것을 실패로만 여기지 않고 참된 도움이 어디서 오는지 다시 묻습니다(19:11-14).</li>
+      <li>머리부터 꼬리까지 손쓸 수 없는 막다른 자리에서도, 구원자를 보내시는 그 손이 이미 움직이고 계심을 믿습니다(19:15, 20).</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">분주한 세상 위에, 하나님은 조용히 그러나 반드시 움직이신다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>"여호와께서... 종용히 감찰함이 쬐이는 일광 같고"(18:4)라는 말씀처럼, 내가 조급히 움직이기보다 하나님의 조용한 때를 기다려야 했던 순간이 있다면 나눠봅시다.</li>
+      <li>애굽의 지혜자들의 계교가 어리석게 되었듯(19:11-14), 내가 의지하던 지혜나 대책이 무너졌을 때 오히려 하나님을 더 의지하게 된 경험이 있나요?</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 제가 분주히 계획을 세우기 전에 먼저 종용히 감찰하시는 주님의 시선을 신뢰하게 하소서. 제 지혜와 대책이 무너지는 날에도 낙심하지 않고 주님이 보내시는 도움을 기다리게 하시고, 소란한 세상 가운데서도 주님의 고요한 주권을 붙들고 오늘을 살게 하소서. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(이사야 18:1–19:15). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
