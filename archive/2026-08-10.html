@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.08.10 (월)</span>
+      <span class="dot">·</span><span>두로에 관한 경고</span>
+    </div>
+    <h1 class="ref">자랑하던 부요가 잠잠해진 뒤에, 거룩히 드려지는 것<span class="range">이사야(Isaiah) 23:1–23:18</span></h1>
+    <p class="hook">
+      다시스의 배들아 슬피 부르짖으라, 두로가 황무하였도다(23:1)<br>
+      면류관을 씌우던 성, 그 영화를 누가 정하였느냐 만군의 여호와시라(23:8–9)<br>
+      칠십 년이 차도록 두로는 잊혀진 노래처럼 잠잠하리라(23:15)<br>
+      그러나 그 무역한 것은 마침내 거룩히 여호와께 돌려지리라(23:18).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">이사야 23장은 13–23장 열국 심판 신탁 모음의 마지막 장으로, 그 대상은 고대 지중해 최고의 무역 강국 두로(페니키아)입니다. 바벨론, 모압, 애굽, 예루살렘 자신까지 다뤄온 신탁의 흐름이 이제 세상에서 가장 부유하고 세련된 상업 제국을 겨냥하며, 놀랍게도 그 끝자락에서 뜻밖의 은혜의 반전을 보여줍니다.</p>
+    <p>1–7절, "두로에 관한 경고라 다시스의 배들아 너희는 슬피 부르짖을지어다 두로가 황무하여 집이 없고 들어갈 곳도 없음이요 이 소식이 깃딤 땅에서부터 그들에게 전파되었음이라"(23:1). 지중해 최대 무역항이 하루아침에 무너졌다는 소식이 먼 다시스 무역로의 배들에게까지 전해집니다. "시홀의 곡식 곧 나일의 추수를 큰 물로 수송하여 들였으니 열국의 시장이 되었도다"(23:3) — 온 세상 물산이 모이던 국제 무역의 중심지였습니다. 본문은 묻습니다. "이것이 옛날에 건설된 너희 희락의 성이냐"(23:7) — 유구한 번영을 자랑하던 성의 몰락에 대한 탄식입니다.</p>
+    <p>8–9절, 본문의 핵심 질문이 이어집니다. "면류관을 씌우던 자요 그 상인들은 고관들이요 그 무역상들은 세상에 존귀한 자들이었던 두로에 대하여 누가 이 일을 정하였느냐"(23:8). 세상 최고의 상인들, 왕들에게 왕관을 씌워줄 만큼 영향력 있던 자들의 몰락 — 그 배후에 누가 있습니까. 답은 명확합니다. "만군의 여호와께서 그것을 정하신 것이라 모든 누리던 영화를 욕되게 하시며 세상의 모든 교만하던 자가 멸시를 받게 하려 하심이라"(23:9). 세상이 가장 자랑스러워하는 부와 명예의 정점조차, 하나님의 작정 앞에서는 순식간에 낮아집니다.</p>
+    <p>10–14절, "여호와께서 바다 위에 그의 손을 펴사 열방을 흔드시며"(23:11) — 두로의 몰락은 지역 사건이 아니라 온 세상 질서를 흔드시는 하나님의 손길로 묘사됩니다. "다시스의 배들아 너희는 슬피 부르짖으라 너희의 견고한 성이 파괴되었느니라"(23:14) — 견고해 보이던 모든 것의 허무함이 다시 한 번 울립니다.</p>
+    <p>15–18절, 그러나 본문은 심판으로 끝나지 않습니다. "그 날부터 두로가 한 왕의 연한 같이 칠십 년 동안 잊어버린 바 되었다가"(23:15) — 마치 바벨론 포로 70년처럼, 두로에게도 정해진 침묵의 시간이 있습니다. 그리고 칠십 년이 찬 후, 뜻밖의 전환이 옵니다. "그 무역한 것과 이익을 거룩히 여호와께 돌리고 간직하거나 쌓아 두지 아니하리니 그 무역한 것이 여호와 앞에 사는 자가 배불리 먹을 양식, 잘 입을 옷감이 되리라"(23:18). 한때 자기 배만 불리던 무역 제국의 부요함이, 마침내 하나님의 백성을 먹이고 입히는 거룩한 것으로 바뀝니다. 심판의 본문이 은혜의 소망으로 끝맺는 이 자리가, 오늘 본문이 가장 조용히 그러나 가장 힘있게 서 있는 곳입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">슬피 부르짖는 무역선들, 낮아지는 세상의 영광, 정해진 칠십 년의 침묵, 그리고 마침내 거룩히 드려지는 부요함 — 오늘 본문의 각 장면은 모두 그리스도를 향해 열려 있는 실을 지니고 있습니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>23:1,14 "다시스의 배들아 슬피 부르짖을지어다" — 견고해 보이던 무역로와 경제 질서의 붕괴는, "무너졌도다 무너졌도다 큰 성 바벨론이여"(계 18:2)와 "땅의 왕들이... 그 불붙는 연기를 보고 위하여 울고 가슴을 치며"(계 18:9)에서 마지막 날 온 세상 상업 체제가 무너지는 종말론적 심판의 예표로 이어집니다.</span></li>
+      <li><span class="tag">둘째</span><span>23:8–9 "면류관을 씌우던 자... 만군의 여호와께서 그것을 정하신 것이라" — 세상 최고의 영광조차 하나님의 주권적 결정 앞에 낮아진다는 이 선언은, "지극히 높으신 자가 인간 나라를 다스리시며 자기의 뜻대로 그것을 누구에게든지 주시는 줄을 알기까지"(단 4:32)와 맥을 같이하며, 궁극적으로 만왕의 왕이신 그리스도 앞에 모든 권세가 굴복할 것을 가리킵니다(빌 2:10–11).</span></li>
+      <li><span class="tag">셋째</span><span>23:15 "칠십 년 동안 잊어버린 바 되었다가" — 정해진 침묵과 유배의 기간이라는 이 패턴은 이스라엘의 바벨론 포로 70년(렘 25:11–12)과 나란히 서며, 하나님의 심판에는 언제나 그분이 정하신 끝이 있다는 사실, 곧 회복이 우연이 아니라 약속임을 보여줍니다.</span></li>
+      <li><span class="tag">넷째</span><span>23:17 "여호와께서 두로를 돌보시리니" — 심판받은 이방 나라를 하나님이 다시 "돌보신다"는 이 표현은, 이방을 향한 하나님의 마음이 진노로 끝나지 않음을 보여주며, "이방인의 충만한 수가 들어오기까지"(롬 11:25) 이방을 향해 열려 있는 하나님의 구원 계획을 미리 비춥니다.</span></li>
+      <li><span class="tag">다섯째</span><span>23:18 "그 무역한 것과 이익을 거룩히 여호와께 돌리고... 그 무역한 것이 여호와 앞에 사는 자가 배불리 먹을 양식, 잘 입을 옷감이 되리라" — 자기만을 위해 쌓던 이방의 부요함이 하나님의 백성을 위한 것으로 바뀌는 이 장면은, "땅의 왕들이 자기 영광을 가지고 그리로 들어가리라... 사람들이 만국의 영광과 존귀를 가지고 그리로 들어가겠고"(계 21:24,26)에서 새 예루살렘으로 열방의 영광이 흘러들어오는 최종적 그림으로 완성됩니다.</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 오늘 본문은 세상에서 가장 화려했던 무역 제국의 몰락에서 시작하지만, 심판으로 끝나지 않고 그 부요함이 마침내 하나님의 백성을 먹이는 거룩한 것으로 바뀌는 데서 끝맺습니다. 이는 심판받은 열방의 영광조차 결국 그리스도의 나라를 풍성하게 하는 데 쓰임받는다는, 하나님의 구속 이야기의 큰 그림을 미리 보여주는 것입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>23:1의 "두로"는 페니키아의 대표 항구도시로, 지중해 무역을 장악한 고대 세계 최고의 상업·해상 강국이었음.</li>
+        <li>23:1,6,10,14의 "다시스"는 지중해 서쪽 끝(스페인 남부 방면으로 추정)의 원거리 무역항으로, 두로 무역망의 규모를 보여주는 지리적 표지.</li>
+        <li>문학구조: 13–23장 열국 심판 신탁 모음의 마지막 장이며, 다른 신탁들과 달리 유일하게 심판(1–14절) 이후 회복(15–18절)의 소망으로 끝맺는 구조를 지님.</li>
+        <li>23:15의 "칠십 년"은 렘 25:11–12의 바벨론 포로 70년과 병행되는 상징적 완결 기간으로, 정확한 연대라기보다 하나님이 정하신 심판의 유효기간을 뜻함.</li>
+        <li>23:17의 "두로가... 음란을 행할 것이며"는 국제 무역을 옛 예언자들이 매춘에 빗대어 표현한 관용적 은유(참조 나 3:4)로, 이익을 좇는 무분별한 국제교역을 가리킴.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>이 본문이 건드리는 우리의 뿌리는, 두로처럼 내가 쌓은 부요함과 영향력, 사람들에게 인정받는 지위가 곧 나의 안전이자 정체성이라고 믿는 마음, 그리고 그것이 흔들릴 때 존재 자체가 무너진다고 느끼는 두려움입니다. 그러나 본문의 결론은 두로의 부요함이 심판으로 완전히 사라지는 것이 아니라, 마침내 하나님께 거룩히 드려져 그분의 백성을 먹이는 것으로 바뀐다는 데 있습니다. 내가 쌓은 것을 스스로 지켜야 안전한 것이 아니라, 이미 모든 것의 주인이신 하나님께 그것을 내어드릴 때 비로소 참된 자리를 찾는다는 것, 그것이 은혜입니다.</p>
+    <ul class="apply-list">
+      <li>내가 쌓아온 것 — 재능, 성취, 관계 — 을 움켜쥐기보다 오늘 하나님과 이웃을 위해 흘려보낼 것을 하나 찾아봅니다(23:18).</li>
+      <li>세상의 인정과 지위가 흔들릴 때, 그것을 정하시는 분이 만군의 여호와이심을 기억하며 그분께 다시 시선을 둡니다(23:9).</li>
+      <li>지금 잠잠한 시간을 보내고 있다면, 그 침묵에도 하나님이 정하신 끝이 있음을 믿고 기다립니다(23:15,17).</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">잠잠해진 무역선의 노래도, 마침내는 하나님의 백성을 배부르게 하는 거룩한 것으로 돌아온다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>"면류관을 씌우던 자... 만군의 여호와께서 그것을 정하신 것이라"(23:8–9)라는 말씀처럼, 내가 스스로 이룬 것이라 여겼던 것 중 사실은 하나님이 주권적으로 허락하신 것은 무엇인가요?</li>
+      <li>두로의 부요함이 결국 하나님 백성을 위한 것으로 바뀐 것처럼(23:18), 내가 가진 것 중 오늘 나눔으로 흘려보낼 수 있는 구체적인 것은 무엇인가요?</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 제가 쌓은 것을 스스로 지키려 애쓰기보다 모든 부요함의 참 주인이신 주님을 바라보게 하소서. 흔들리는 자리에서도 정하신 것은 반드시 이루신다는 신실하심을 믿게 하시고, 제게 있는 것을 기꺼이 흘려보내는 손이 되게 하소서. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(이사야 23:1–23:18). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
