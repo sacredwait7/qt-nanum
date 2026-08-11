@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.08.11 (화)</span>
+      <span class="dot">·</span><span>즐거움이 사라진 땅</span>
+    </div>
+    <h1 class="ref">즐거움이 그친 성읍에도, 감람나무엔 남은 열매가 있다<span class="range">이사야(Isaiah) 24:1–24:13</span></h1>
+    <p class="hook">
+      보라 여호와께서 땅을 공허하게 하시며 황폐하게 하시리라(24:1)<br>
+      백성과 제사장이, 종과 상전이 다르지 않으리니(24:2)<br>
+      새 포도즙이 슬퍼하고 수금 타는 기쁨도 그치는 날(24:7–8)<br>
+      그러나 감람나무를 흔든 후에도, 남은 열매가 있으리라(24:13).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">이사야 24장은 13–23장에서 바벨론, 모압, 애굽, 두로 등 개별 열방을 겨냥해 온 심판 신탁의 흐름을 넘어, 24–27장이라는 새로운 단락을 엽니다. 흔히 "이사야의 묵시록"이라 불리는 이 단락에서 심판의 대상은 더 이상 특정 나라가 아니라 "땅" 곧 온 세상 전체로 확대됩니다.</p>
+    <p>1–3절, "보라 여호와께서 땅을 공허하게 하시며 황폐하게 하시며 지면을 뒤집어엎으시고 그 주민을 흩으시리니"(24:1). 창조의 질서를 뒤집는 듯한 언어로 시작된 심판은 곧바로 사회 전체를 향합니다. "백성과 제사장이 같을 것이며 종과 상전이 같을 것이며 여종과 여주인이 같을 것이며"(24:2) — 종교적 신분도, 사회적 지위도, 경제적 위치도 심판 앞에서는 아무 차이를 만들어내지 못합니다. "땅이 온전히 공허하게 되고 온전히 황무하게 되리라"(24:3)는 반복은 이 심판이 부분적이거나 선택적이지 않음을 못박습니다.</p>
+    <p>4–6절, 본문은 이 철저한 심판의 이유를 분명히 밝힙니다. "땅이 또한 그 주민 아래서 더럽게 되었으니 이는 그들이 율법을 범하며 율례를 어기며 영원한 언약을 깨뜨렸음이라"(24:5). 심판은 변덕스러운 진노가 아니라 깨어진 언약에 대한 정당한 응답입니다. "그러므로 저주가 땅을 삼켰고"(24:6) — 에덴에서 시작된 저주의 언어가 다시 땅 전체를 덮습니다. 이는 인간이 특권과 지위를 가지고도 언약 앞에서 신실하지 못했다는, 우리 모두의 공통된 실상을 드러냅니다.</p>
+    <p>7–9절, 심판의 결과는 일상의 기쁨이 조용히 사라지는 것으로 그려집니다. "새 포도즙이 슬퍼하고 포도나무가 쇠잔하며 마음이 즐겁던 자가 다 탄식하며"(24:7), "소고 치는 기쁨이 그치고... 수금 타는 기쁨이 그쳤으며"(24:8). 잔치와 노래, 사람 사이의 흥겨움이 하나씩 꺼져갑니다. 이는 우리가 붙잡는 기쁨이 그 자체로는 얼마나 연약한 것인지를 보여주며, 흔들리지 않는 기쁨의 근원이 어디에 있는지를 다시 묻게 합니다.</p>
+    <p>10–13절, "약탈을 당한 성읍이 허물어지고... 포도주가 없으므로 거리에서 부르짖으며 모든 즐거움이 사라졌으며"(24:10–11). 그러나 본문은 여기서 완전히 끝나지 않습니다. "세계 민족 중에 이러한 일이 있으리니 곧 감람나무를 흔듦 같고 포도를 거둔 후에 그 남은 것을 주움 같을 것이니라"(24:13). 나무를 흔들어 열매를 떨어도 가지 끝에 남는 열매가 있듯, 철저한 심판 가운데서도 본문은 조용히 "남은 것"을 말합니다. 오늘 본문이 스스로 남기는 위로의 자리는 바로 여기입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">땅을 공허하게 하시는 손길, 계급을 넘어선 평등한 심판, 깨어진 영원한 언약, 저주에 삼켜진 땅, 그치는 기쁨, 그리고 감람나무에 남은 열매 — 오늘 본문의 각 장면은 그리스도를 향해 열려 있는 실을 지니고 있습니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>24:1 "여호와께서 땅을 공허하게 하시며 황폐하게 하시며" — "공허하고 황폐하다"는 표현은 창세기 1:2 "땅이 혼돈하고 공허하며"를 떠올리게 하며, 심판이 곧 창조 질서의 되돌림임을 보여줍니다. 이는 궁극적으로 옛 것을 헐고 새롭게 지으시는 하나님의 새 창조, "보라 내가 만물을 새롭게 하노라"(계 21:5)로 이어집니다.</span></li>
+      <li><span class="tag">둘째</span><span>24:2 "백성과 제사장이 같을 것이며 종과 상전이 같을 것이며" — 신분과 지위를 넘어선 이 평등한 심판은, "모든 사람이 죄를 범하였으매... 차별이 없느니라"(롬 3:22–23)는 복음의 선언과 맞닿아 있으며, 결국 그리스도 안에서 신분의 벽이 허물어지는 "너희는 유대인이나 헬라인이나... 다 그리스도 예수 안에서 하나이니라"(갈 3:28)의 은혜로 완성됩니다.</span></li>
+      <li><span class="tag">셋째</span><span>24:5 "영원한 언약을 깨뜨렸음이라" — 많은 학자들이 이를 노아 언약(창 9:16, "영원한 언약이라")과 연결하며, 온 인류가 공유한 이 언약조차 깨어졌다는 사실은 사람의 힘으로는 지켜지지 않는 언약의 한계를 보여주고, 하나님이 친히 마음에 새기시는 새 언약, "내가 나의 법을 그들의 속에 두며 그 마음에 기록하여"(렘 31:33)를 향한 필요를 예비합니다.</span></li>
+      <li><span class="tag">넷째</span><span>24:6 "저주가 땅을 삼켰고" — 이는 창세기 3:17 "땅이 너로 말미암아 저주를 받고"의 메아리이며, 이 저주는 결국 "그리스도께서 우리를 위하여 저주를 받은 바 되사 율법의 저주에서 우리를 속량하셨으니"(갈 3:13)에서 친히 저주를 짊어지신 그리스도에게서 그 해결점을 찾습니다.</span></li>
+      <li><span class="tag">다섯째</span><span>24:7–8 "수금 타는 기쁨이 그쳤으며" — 사라진 잔치와 노래는 바로 다음 장 이사야 25:6 "만군의 여호와께서 이 산에서 만민을 위하여 기름진 것과 오래 저장하였던 포도주로 잔치를 베푸시리니"에서 회복되는 잔치로 이어지며, 이는 물로 포도주를 만드신 예수님(요 2장)과 마침내 "어린 양의 혼인 잔치"(계 19:9)에서 완성되는 참된 기쁨을 미리 가리킵니다.</span></li>
+      <li><span class="tag">여섯째</span><span>24:13 "감람나무를 흔듦 같고... 그 남은 것을 주움 같을 것이니라" — 심판 후에도 남는 열매라는 이 남은 자(remnant) 사상은 이사야 전체에 흐르는 주제(사 10:20–22)이며, "은혜로 택하심을 따라 남은 자가 있느니라"(롬 11:5)에서 확인되듯, 참 남은 자이신 그리스도 안에서 보존되는 하나님 백성의 소망으로 이어집니다.</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 오늘 본문은 온 땅을 뒤흔드는 철저한 심판에서 시작하지만, 그 끝자락에 감람나무의 남은 열매라는 조용한 소망을 심어둡니다. 이는 심판이 하나님의 마지막 말씀이 아니라, 남은 자를 통해 새 창조와 새 언약, 참된 잔치의 기쁨으로 나아가시는 하나님의 더 큰 구속 이야기의 한 장면임을 보여줍니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>24–27장은 흔히 "이사야의 묵시록"으로 불리는 독립 단락으로, 13–23장이 개별 열방을 겨냥한 것과 달리 "땅"(에레츠) 전체를 심판의 대상으로 삼는다는 점에서 구별됨.</li>
+        <li>1절의 "공허하게 하시며"(בּוֹקֵק)와 "황폐하게 하시며"(בּוֹלֵק)는 히브리어 발음이 유사한 두 단어를 나란히 둔 두운(paronomasia)으로, 파괴의 철저함을 청각적으로 강조하는 시적 언어유희임.</li>
+        <li>2절은 제사장/백성, 종/상전, 여종/여주인, 사는자/파는자, 빌리는자/빌려주는자, 이자받는자/이자내는자 등 여섯 쌍의 대구로 사회 전 계층이 예외 없이 심판 아래 놓임을 열거함.</li>
+        <li>5절의 "영원한 언약"은 시내산 언약보다 앞서 온 인류를 포괄하는 노아 언약(창 9:16)을 가리킨다는 것이 다수 견해로, 심판의 대상이 이스라엘만이 아닌 온 인류임을 뒷받침함.</li>
+        <li>13절의 "감람나무를 흔듦"은 막대기로 나무를 쳐서 열매를 떨어내는 팔레스타인 전통 수확법(참조 신 24:20)을 가리키며, 수확 후에도 남는 것이 있듯 심판 후에도 남는 자가 있다는 remnant 사상을 시각적으로 보여줌.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>이 본문이 건드리는 우리의 뿌리는, 내가 쌓은 신앙적 경력이나 도덕적 자부심, 사회적 지위가 나를 심판에서 예외로 만들어 줄 것이라는 은근한 믿음입니다. "백성과 제사장이 같을 것이며"(24:2)라는 말씀은 바로 그 착각을 깨뜨립니다. 그러나 본문은 거기서 끝나지 않고 감람나무에 남은 열매(24:13)로 마무리됩니다. 내가 심판을 피할 만큼 온전해서가 아니라, 하나님이 은혜로 남겨두시기에 오늘 여기 있다는 것 — 그것이 복음이 말하는 은혜입니다.</p>
+    <ul class="apply-list">
+      <li>오늘 내가 은근히 기대어 온 안전망 — 신앙 경력, 도덕적 성취, 사람들의 인정 — 이 무엇인지 솔직히 떠올려보고, 그것이 아니라 하나님의 은혜만이 참 안전임을 되새깁니다.</li>
+      <li>삶의 기쁨이 조용히 사라졌다고 느껴질 때, 그 기쁨 자체를 되찾으려 애쓰기보다 기쁨의 근원이신 하나님께 먼저 마음을 돌립니다(24:7–8).</li>
+      <li>내가 완벽해서가 아니라 하나님이 남기시는 은혜로 오늘도 서 있다는 사실을 감사함으로 하루를 시작합니다(24:13).</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">감람나무를 흔든 후에도 남은 열매가 있듯, 심판의 폭풍이 지나간 자리에도 하나님이 남겨두신 은혜가 있다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>"백성과 제사장이 같을 것이며 종과 상전이 같을 것이며"(24:2)라는 말씀처럼, 내가 은근히 기대어 온 신앙적 특권이나 지위가 있다면 무엇이며, 그것이 참된 안전이 아니라는 사실을 어떻게 받아들이고 있나요?</li>
+      <li>"새 포도즙이 슬퍼하고... 수금 타는 기쁨이 그쳤으며"(24:7–8)처럼 요즘 내 삶에서 조용히 사라진 기쁨이 있다면 무엇이며, 그 자리에 하나님을 다시 초대한다면 어떤 모습일까요?</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 무너지는 세상 앞에서 제 지위나 쌓아온 것이 아니라 오직 주님만을 참된 피난처로 삼게 하소서. 흔들리는 날에도 감람나무의 남은 열매처럼 저를 은혜로 남겨두시는 주님의 신실하심을 신뢰하게 하시고, 사라진 기쁨의 자리에 다시 주님의 노래로 채워 주소서. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(이사야 24:1–24:13). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
