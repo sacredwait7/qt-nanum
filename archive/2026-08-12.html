@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.08.12 (수)</span>
+      <span class="dot">·</span><span>땅끝에서부터 들리는 찬양</span>
+    </div>
+    <h1 class="ref">찬양이 터지는 그 순간, 나는 이르기를 나는 쇠잔하였고<span class="range">이사야(Isaiah) 24:14–24:23</span></h1>
+    <p class="hook">
+      땅 끝에서부터 노래하는 소리, 의로우신 이에게 영광을 돌리세 하는데(24:16a)<br>
+      그러나 나는 이르기를 나는 쇠잔하였고 화가 있도다(24:16b)<br>
+      두려움과 함정과 올무가 땅의 주민을 뒤쫓는 밤에도(24:17–20)<br>
+      마침내 해도 달도 무색해지도록, 여호와께서 시온에서 왕이 되시리라(24:23).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">어제 본문(24:1–13)이 심판으로 황폐해진 땅 가운데 감람나무의 남은 열매를 조용히 남겨두었다면, 오늘 본문은 그 남은 자들의 입에서 터져 나오는 찬양으로 시작합니다. 그러나 이 찬양은 곧바로 예상치 못한 탄식과 부딪히고, 본문은 두려움과 함정과 흔들림을 지나 마침내 시온에 좌정하신 여호와의 영광으로 나아갑니다.</p>
+    <p>14–15절, "무리가 소리를 높여 부를 것이며 여호와의 위엄으로 말미암아 바다에서부터 크게 외치리니... 너희가 동방에서 여호와를 영화롭게 하며 바다 모든 섬에서 이스라엘의 하나님 여호와의 이름을 영화롭게 할 것이라"(24:14–15). 황폐해진 땅에서 살아남은 자들의 노래가 동에서 서까지, 대륙에서 섬까지 퍼져 나갑니다. 심판의 잿더미 속에서도 예배가 다시 시작된다는 것, 그것이 이 본문의 첫 움직임입니다.</p>
+    <p>16절, "땅 끝에서부터 노래하는 소리가 우리에게 들리기를 의로우신 이에게 영광을 돌리세 하도다." 그런데 바로 다음 문장에서 본문은 급격히 방향을 바꿉니다. "그러나 나는 이르기를 나는 쇠잔하였고 나는 쇠잔하였으니 내게 화가 있도다 배신자들은 배신하고 배신자들이 크게 배신하였도다"(24:16). 온 땅이 합창하는 그 순간, 선지자 자신의 목소리는 정반대의 탄식을 토합니다. "배신자들은 배신하고... 크게 배신하였도다"는 반복은 심판이 지나갔어도 사람 사이의 신실치 못함은 끝나지 않았다는 냉정한 현실을 드러냅니다. 찬양의 합창과 개인의 탄식이 한 절 안에 나란히 놓이는 이 긴장은, 우리의 예배 역시 겉으로 온전해 보여도 그 속에는 여전히 지친 마음과 반복되는 실패가 함께 있을 수 있음을 보여줍니다.</p>
+    <p>17–20절, 탄식은 곧바로 심판의 이미지로 이어집니다. "땅의 주민아 두려움과 함정과 올무가 네게 이르렀나니 두려운 소리로 말미암아 도망하는 자는 함정에 빠지겠고 함정 속에서 올라오는 자는 올무에 걸리리니"(24:17–18). 두려움을 피해 도망쳐도 함정이 기다리고, 함정에서 빠져나와도 올무가 기다립니다. 스스로 계산한 도피로는 결코 벗어날 수 없다는 것, 그것이 인간의 실상입니다. 이어 "땅이 깨지고 깨지며... 땅이 취한 자 같이 비틀비틀하며 원두막 같이 흔들리며 그 위의 죄악이 중하므로 떨어져서 다시는 일어나지 못하리라"(24:19–20)는 창조 세계 전체가 술 취한 사람처럼 휘청이는 모습으로 그려집니다. 죄의 무게가 세상 자체를 짓누르고 있다는 것을 이보다 생생하게 표현하기 어려울 것입니다.</p>
+    <p>21–23절, 그러나 본문은 여기서 멈추지 않습니다. "그 날에 여호와께서 높은 데에서 높은 군대를 벌하시며 땅에서 땅의 왕들을 벌하시리니"(24:21) — 하늘의 권세와 땅의 권세가 함께, 예외 없이 그 앞에 굴복합니다. 그리고 본문의 절정, "그 때에 달이 수치를 당하고 해가 부끄러워하리니 이는 만군의 여호와께서 시온 산과 예루살렘에서 왕이 되시고 그 장로들 앞에서 영광을 나타내실 것임이라"(24:23). 하늘의 가장 밝은 빛인 해와 달조차 무색해질 만큼 크신 영광으로, 여호와께서 시온에서 왕이 되십니다. 두려움과 흔들림으로 가득했던 본문은 결국 흔들리지 않는 한 보좌를 가리키며 끝을 맺습니다. 오늘 본문이 스스로 남기는 위로는 바로 이 지점, 모든 것이 흔들려도 시온의 왕좌만은 흔들리지 않는다는 사실입니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">땅 끝까지 퍼지는 찬양, 반복되는 배신, 피할 수 없는 두려움과 함정과 올무, 흔들리는 땅, 그리고 해와 달을 무색케 하는 시온의 왕 — 오늘 본문의 각 장면은 그리스도를 향해 열려 있는 실을 지니고 있습니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>24:14–15 "무리가 소리를 높여 부를 것이며... 바다 모든 섬에서" — 동방과 바다 모든 섬에서 터지는 찬양은 이스라엘을 넘어 온 열방이 하나님을 예배하게 될 날을 미리 보여주며, "각 족속과 방언과 백성과 나라 가운데서 사람들을 피로 사서 하나님께 드리시고"(계 5:9)에서 완성되는 만민의 예배를 향해 열려 있습니다.</span></li>
+      <li><span class="tag">둘째</span><span>24:16 "배신자들은 배신하고 배신자들이 크게 배신하였도다" — 찬양 한가운데서 드러나는 이 반복된 배신은 결국 사람은 누구도 스스로 신실할 수 없다는 것을 보여주며, "볼지어다 나를 파는 자의 손이 나와 함께 상 위에 있도다"(눅 22:21)에서 배신을 몸소 겪으시고도 끝까지 신실하셨던 그리스도, "충성된 증인"(계 1:5)이신 그분의 필요성을 예비합니다.</span></li>
+      <li><span class="tag">셋째</span><span>24:17–18 "두려움과 함정과 올무가 네게 이르렀나니... 올무에 걸리리니" — 스스로는 벗어날 수 없는 이 함정과 올무의 심판은 "우리 영혼이 새가 사냥꾼의 올무에서 벗어남 같이 벗어났나니 올무가 끊어지므로 우리가 벗어났도다"(시 124:7)라는 구원의 언어와 정확히 맞닿으며, 그 올무를 끊으신 분이 바로 우리를 위해 죽음의 올무에 스스로 걸리신 그리스도임을 가리킵니다.</span></li>
+      <li><span class="tag">넷째</span><span>24:19–20 "땅이 흔들리고 흔들리며... 다시는 일어나지 못하리라" — 죄의 무게로 휘청이는 땅의 모습은 "내가 또 한 번 하늘과 땅을 진동시킬 것이요"(학 2:6)를 거쳐 "그가 또 한 번 땅만 진동시길 것이 아니요 하늘도 진동시키리라 하셨느니라... 우리는 흔들리지 않는 나라를 받았은즉"(히 12:26–28)으로 이어지며, 흔들리는 모든 것 가운데 홀로 흔들리지 않는 그리스도의 나라를 예비합니다.</span></li>
+      <li><span class="tag">다섯째</span><span>24:21 "여호와께서 높은 데에서 높은 군대를 벌하시며 땅에서 땅의 왕들을 벌하시리니" — 하늘의 권세와 땅의 권세가 함께 심판받는 이 이중 구조는 "정사와 권세를 무력화하여... 십자가로 그들을 이기셨느니라"(골 2:15)에서 십자가로 모든 영적·정치적 권세를 이기신 그리스도의 승리, 그리고 "그 후에는 마지막이니 그가 모든 통치와 모든 권세와 능력을 멸하시고"(고전 15:24)의 완성으로 나아갑니다.</span></li>
+      <li><span class="tag">여섯째</span><span>24:23 "달이 수치를 당하고 해가 부끄러워하리니... 여호와께서... 왕이 되시고" — 해와 달마저 무색케 하는 이 영광은 "그 성은 해나 달의 비침이 쓸 데 없으니 이는 하나님의 영광이 비치고 어린 양이 그 등불이 되심이라"(계 21:23)에서 새 예루살렘의 완성된 모습으로 그대로 이루어지며, 오늘 본문의 시온 왕좌가 마침내 어린 양의 보좌로 완성됨을 보여줍니다.</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 오늘 본문은 땅 끝에서 터지는 찬양으로 시작해 배신과 두려움과 흔들림을 지나, 결국 해와 달조차 무색케 하는 시온의 왕좌로 끝맺습니다. 이는 우리의 예배가 완전해서, 우리의 신실함이 충분해서가 아니라, 흔들리지 않는 나라의 왕이신 그리스도께서 친히 모든 배신과 두려움과 흔들림 한가운데서 우리를 붙드시는 하나님의 더 큰 구속 이야기의 한 장면임을 보여줍니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>14–16a절은 심판 신탁(1–13절) 직후 흩어진 남은 자들이 동방과 서쪽 바다 섬들에서 합창처럼 부르는 짧은 송영(doxology)으로, 이사야 24–27장 전체에서 처음 등장하는 찬양 단락임.</li>
+        <li>16절 "그러나 나는 이르기를"(וָאֹמַר)은 공동체의 찬양에서 선지자 개인의 1인칭 탄식으로 급격히 전환되는 문학적 전환점으로, 의도적으로 독자를 당황하게 만드는 구성임.</li>
+        <li>17–18절의 "두려움"(פַּחַד, 파하드)·"함정"(פַּחַת, 파하트)·"올무"(פַּח, 파흐)는 소리가 유사한 세 단어를 나란히 배치한 두운(alliteration)으로, 심판의 연쇄적 불가피성을 청각적으로 강조하며 렘 48:43–44에도 동일한 표현이 등장함.</li>
+        <li>21절의 "높은 데에서 높은 군대"는 지상의 왕들과 짝을 이루는 하늘의 영적 권세(별들, 천상의 세력)를 가리키는 것으로 보는 견해가 많아, 심판이 영적 영역과 정치적 영역 모두를 포괄함을 보여줌.</li>
+        <li>23절은 24장 전체의 절정이자 25–27장에 이어지는 시온 잔치와 회복 신탁의 서곡 역할을 하며, "만군의 여호와"라는 칭호가 처음으로 왕적 통치의 언어와 함께 등장함.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>이 본문이 건드리는 우리의 뿌리는, 두려움 앞에서 스스로 도망칠 길을 계산하려는 마음과, 함께 찬양하면서도 정작 내 안의 지친 배신과 실패는 감추려는 마음입니다. "두려움과 함정과 올무"(24:17–18)는 아무리 애써도 사람의 지혜로는 빠져나갈 수 없습니다. 그러나 본문은 내가 도망에 성공해서가 아니라, 여호와께서 친히 시온에서 왕이 되시고 해와 달마저 무색케 하는 영광으로 좌정하셨기에(24:23) 안전하다고 말합니다. 내 신실함이 아니라 이미 왕좌에 앉으신 그분의 다스림이 근거입니다.</p>
+    <ul class="apply-list">
+      <li>오늘 내가 스스로 피하려 애쓰는 두려움이나 문제가 있다면, 내 계산이 아니라 이미 시온에서 왕이 되신 주님께 맡깁니다.</li>
+      <li>"나는 쇠잔하였고"(24:16)라는 고백처럼, 겉으로 괜찮은 척하기보다 내 지친 마음과 반복되는 실패를 오늘 주님 앞에 솔직히 내어놓습니다.</li>
+      <li>세상이 흔들리는 것처럼 느껴지는 순간에도, 흔들리지 않는 나라의 왕이신 주님을 바라보며 오늘 하루의 첫걸음을 뗍니다.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">땅이 취한 자같이 비틀거려도, 시온에서 왕이 되신 주님의 보좌는 흔들리지 않는다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>"그러나 나는 이르기를 나는 쇠잔하였고... 화가 있도다"(24:16)처럼, 겉으로는 함께 찬양하면서도 나만 알고 있는 지친 마음이나 반복되는 실패가 있다면 무엇인가요?</li>
+      <li>"달이 수치를 당하고 해가 부끄러워하리니... 여호와께서... 왕이 되시고"(24:23)라는 말씀처럼, 내 삶에서 하나님의 다스림보다 더 밝게 여기며 의지해 온 것이 있다면 무엇이며, 오늘 그것을 어떻게 내려놓을 수 있을까요?</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 함께 드리는 찬양 속에서도 홀로 지쳐 있는 제 마음을 숨기지 않고 솔직히 내어놓게 하소서. 두려움과 함정과 올무 같은 날에도 스스로 피할 길을 찾기보다 시온에서 왕이 되신 주님만을 바라보게 하시고, 세상이 흔들려도 흔들리지 않는 주님의 나라 안에 오늘도 굳게 서게 하소서. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(이사야 24:14–24:23). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
