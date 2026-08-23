@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.08.22 (토)</span>
+      <span class="dot">·</span><span>감싸시는 날개</span>
+    </div>
+    <h1 class="ref">돕는 자를 세는 동안, 감싸시는 날개를 잊었다<span class="range">이사야(Isaiah) 31:1–31:9</span></h1>
+    <p class="hook">
+      말과 병거를 세면서도, 거룩하신 이를 앙모하지 않는 자여(31:1)<br>
+      돕는 자도 넘어지고 도움을 받는 자도 함께 엎드러지리니(31:3)<br>
+      새가 날개 치며 새끼를 보호함 같이, 여호와께서 예루살렘을 지키시리라(31:5)<br>
+      심히 거역하던 자들아, 이제 돌아오라(31:6).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">1절은 "화 있을진저"라는 탄식으로 시작합니다. "도움을 구하려고 애굽으로 내려가는 자들이여 그들은 말을 의지하며 병거의 많음과 마병의 심히 강함을 의지하고 이스라엘의 거룩하신 이를 앙모하지 아니하며 여호와를 구하지 아니하나니." 여기서 가장 먼저 눈에 띄는 것은 그들이 무언가를 하지 않았다는 사실이 아니라, 무언가를 하지 않고 곧장 다른 곳으로 갔다는 사실입니다. 그들은 여호와께 묻지 않았습니다. 세어볼 수 있는 것—말의 수, 병거의 수, 마병의 강함—으로 곧장 향했을 뿐입니다. 우리의 기본값도 다르지 않습니다. 위기 앞에서 먼저 손이 가는 곳은 대개 셀 수 있는 것들입니다.</p>
+    <p>2-3절은 그 셈을 뒤집습니다. "여호와께서도 지혜로우신즉 재앙을 내리실 것이라... 애굽은 사람이요 신이 아니며 그들의 말들은 육체요 영이 아니라." 애굽이 어리석어서 문제가 아닙니다. 애굽은 그저 사람이고 육체일 뿐이라는 것—그 존재 자체의 한계가 문제입니다. 그리고 이어지는 문장이 이 본문 전체의 핵심을 찌릅니다. "여호와께서 그의 손을 펴시면 돕는 자도 넘어지고 도움을 받는 자도 엎드러져서 다 함께 멸망하리라." 돕는 자와 도움받는 자가 따로 서 있지 않습니다. 잘못된 곳에 걸린 신뢰는 신뢰하는 자와 신뢰받는 자를 함께 쓰러뜨립니다.</p>
+    <p>4-5절에서 본문은 완전히 다른 장면으로 넘어갑니다. "큰 사자나 젊은 사자가 그 움킨 것을 대하여 울 때에... 여러 목자를 불러 왔다 할지라도 그것이 그들의 소리로 말미암아 놀라지 아니할 것이요"—사자는 아무리 여럿이 소리쳐도 흔들리지 않습니다. 이처럼 만군의 여호와께서 시온 산에서 싸우실 때, 어떤 소란도 그분을 물러서게 하지 못합니다. 그런데 바로 다음 절에서 이미지가 급변합니다. "새가 날개 치며 그 새끼를 보호함 같이 만군의 여호와께서 예루살렘을 보호하실 것이라 보호하여 건지시며 뛰어넘어 구원하시리라." 사자의 용맹과 새의 보호—공격 앞에서는 흔들리지 않으시고, 자기 백성 앞에서는 날개를 펴시는 한 분이십니다.</p>
+    <p>6-7절은 그래서 명령형으로 바뀝니다. "이스라엘 자손들아 너희는 심히 거역하던 자에게로 돌아오라... 너희가 각기 손으로 만들어 범죄한 은 우상, 금 우상을 그 날에는 버릴 것이라." 돌아옴은 손으로 만든 것을 버리는 일과 함께 갑니다. 8-9절은 이 모든 것의 결론입니다. "앗수르는 칼에 엎드러질 것이나 사람의 칼로 말미암음이 아니겠고... 여호와의 불은 시온에 있고 여호와의 풀무는 예루살렘에 있느니라." 애굽의 말과 병거로도 막지 못할 것을 여호와께서는 사람의 손 없이 처리하십니다. 본문은 세어볼 수 있는 도움에서 시작해, 세지 않아도 이미 임재하시는 불로 끝맺습니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">말과 병거를 의지하는 자리에서 앙모함으로, 사람과 신을 구별하는 자리에서 성육신으로, 사자의 용맹에서 유다 지파의 사자로, 새의 날개에서 십자가를 향해 우신 예수의 탄식으로, 시온의 불에서 오순절의 불로—오늘 본문의 장면들은 그리스도 안에서 하나씩 그 자리를 찾아갑니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>31:1 "이스라엘의 거룩하신 이를 앙모하지 아니하며" — 셀 수 있는 것 대신 여호와를 앙모하라는 이 부름은 "혹은 병거, 혹은 말을 의지하나 우리는 여호와 우리 하나님의 이름을 자랑하리로다"(시 20:7)에서 이미 예배의 언어가 되었고, "믿음의 주요 온전하게 하시는 이인 예수를 바라보자"(히 12:2)에서 그 앙모함의 최종 대상이 그리스도이심이 드러납니다.</span></li>
+      <li><span class="tag">둘째</span><span>31:3 "애굽은 사람이요 신이 아니며 그들의 말들은 육체요 영이 아니라" — 육체와 영을 가르는 이 구별은 "육은 무익하니라... 내가 너희에게 이른 말이 영이요 생명이라"(요 6:63)로 이어지며, 오직 그리스도 안에서만 육체이면서 동시에 참하나님이신 분—애굽처럼 넘어지지 않는 유일한 도움—이 오셨음을 가리킵니다(요 1:14).</span></li>
+      <li><span class="tag">셋째</span><span>31:4 "만군의 여호와께서 강림하사 시온 산과 그 언덕에서 싸우실 것이라" — 어떤 소리에도 놀라지 않는 사자의 형상은 "유다 지파의 사자, 다윗의 뿌리가 이겼으니"(계 5:5)라는 선언에서 마침내 이름을 얻으며, 십자가에서 죽음의 소란 앞에서도 물러서지 않으신 그리스도의 싸움으로 성취됩니다.</span></li>
+      <li><span class="tag">넷째</span><span>31:5 "새가 날개 치며 그 새끼를 보호함 같이" — 이 보호의 형상은 예루살렘을 향해 우신 예수의 탄식, "암탉이 그 새끼를 날개 아래 모음 같이 내가 네 자녀를 모으려 한 일이 몇 번이냐 그러나 너희가 원하지 아니하였도다"(마 23:37)에서 그대로 되울리며, 옛적 시온을 지키시던 그 날개가 곧 예수 자신의 심정이었음을 보여줍니다.</span></li>
+      <li><span class="tag">다섯째</span><span>31:9 "여호와의 불은 시온에 있고 여호와의 풀무는 예루살렘에 있느니라" — 예루살렘에 머무는 이 불의 임재는 오순절 날 "불의 혀같이 갈라지는 것들이... 각 사람 위에 임하여"(행 2:3) 성령으로 부어지며, 옛 시온의 불이 이제 그리스도의 몸 된 교회 각 사람 위에 머무는 불로 확장됩니다.</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 오늘 본문은 셀 수 있는 것을 의지하려는 우리의 습관적 자리에서 시작해, 육체와 영을 구별하시는 하나님을 지나, 물러서지 않는 사자와 날개 펴는 새의 두 형상을 거쳐, 마침내 시온에 머무는 불로 끝맺습니다. 이는 그리스도 안에서 싸우시는 용맹과 품으시는 자비가 한 분의 두 얼굴이며, 그 불이 오늘 우리 안에도 계속 머물고 있다는 구속사 전체의 흐름을 보여줍니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>31장은 28-31장에 걸쳐 반복되는 "화 있을진저" 신탁 시리즈의 마지막으로, 애굽 동맹에 대한 심판 신탁을 마무리 짓는 위치에 놓임.</li>
+        <li>3절의 "사람 vs 신, 육체 vs 영"은 히브리어 바사르(בָּשָׂר, 육체)와 루아흐(רוּחַ, 영)의 대조로, 유한한 피조물과 무한하신 창조주를 가르는 신학적 핵심 어구.</li>
+        <li>4-5절은 사자(공격·전쟁의 이미지)와 새(보호·양육의 이미지)라는 상반된 두 비유를 나란히 두어, 여호와 한 분 안에 있는 용맹과 자비를 동시에 드러냄.</li>
+        <li>6절 "돌아오라"(슈브, שׁוּב)는 이사야서 전체에서 반복되는 회개의 핵심 동사.</li>
+        <li>9절 "풀무"(예루살렘)는 심판의 불이 머무는 장소이자 동시에 정결케 하는 처소라는 이중적 이미지로 쓰임.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>이 본문이 건드리는 우리의 뿌리는 "셀 수 있는 만큼만 안심할 수 있다"는 조바심입니다—대안이 몇 개나 되는지, 손에 쥔 자원이 얼마나 되는지를 계산해야만 비로소 마음이 놓이는 습관입니다. 그러나 5절은 이 계산을 앞질러 갑니다. "새가 날개 치며 그 새끼를 보호함 같이 만군의 여호와께서 예루살렘을 보호하실 것이라." 새끼는 자기를 보호할 날개의 개수를 셀 필요가 없습니다. 이미 그 날개 아래 있기 때문입니다. 우리가 오늘 안전을 확보해야 할 대상이 아니라, 이미 확보되어 있는 안전 안으로 걸어 들어가는 것—그것이 은혜입니다.</p>
+    <ul class="apply-list">
+      <li>오늘 내가 의지하려는 '말과 병거'가 무엇인지 먼저 이름 붙이고, 그것을 세는 대신 나를 부르시는 음성에 귀 기울입니다.</li>
+      <li>도움이 되어줄 것 같던 것들이 흔들릴 때, 나 역시 함께 넘어질 존재임을 인정하고 방향을 여호와께로 돌립니다.</li>
+      <li>날개 아래 이미 나를 모으기로 작정하신 그 사랑을, 오늘 하루의 안전으로 그대로 받아들입니다.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">세어야 안심되는 것들보다 먼저, 날개 아래 모으기로 작정하신 사랑이 있었다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>요즘 나도 모르게 '애굽'처럼 의지하고 있는 것(재정, 인맥, 계획, 능력)은 무엇이며, 그것을 세는 대신 하나님을 구하는 것은 구체적으로 어떤 모습일까요?</li>
+      <li>"심히 거역하던 자에게로 돌아오라"(31:6)는 말씀 앞에서, 오늘 내가 내려놓아야 할 손으로 만든 '우상'이 있다면 무엇인가요?</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 제가 셀 수 있는 것들을 의지하려 할 때, 이미 날개 아래 저를 모으기로 작정하신 주의 사랑을 기억하게 하소서. 심히 거역하던 자리에서 돌이켜 주만을 앙모하게 하시고, 오늘 하루 주의 불과 풀무 같은 임재 안에 거하게 하소서. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(이사야 31:1–31:9). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
