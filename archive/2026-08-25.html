@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.08.25 (화)</span>
+      <span class="dot">·</span><span>에돔의 멸망</span>
+    </div>
+    <h1 class="ref">연기는 끝없이 오르되, 그 책에는 하나도 빠짐이 없다<span class="range">이사야(Isaiah) 34:1–34:17</span></h1>
+    <p class="hook">
+      열방이여 나아와 들으라, 땅과 그 안의 모든 것이 심판대 앞에 서리니(34:1)<br>
+      하늘에서 배부르게 마신 칼이, 보스라 위에 내려오는도다(34:5–6)<br>
+      밤낮 꺼지지 않는 연기가, 세세토록 그 땅 위에 오르리라(34:9–10)<br>
+      그러나 여호와의 책에는 하나도 빠짐이 없으니, 그 말씀이 친히 이루시리라(34:16).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">본문은 좁은 청중이 아니라 우주적 청중을 부릅니다. "열방이여 나아와 들을지어다 민족들이여 귀를 기울일지어다 땅과 그 위에 충만한 것, 세계와 그 중에서 나는 모든 것이여 들을지어다"(1절). 이어지는 2-3절은 그 심판의 이유를 밝힙니다. 여호와께서 "열방을 향하여 진노하시며" 그들을 "진멸하기로 정하여 살륙" 당하게 하시고, "산들은 그 피에 녹으리라"고 말합니다. 그리고 4절은 그 심판의 파장이 인간 사회를 넘어선다는 것을 보여줍니다. "하늘의 만상이 사라지고 하늘들이 두루마리 같이 말리며." 죄에 대한 하나님의 반응은 결코 사사로운 일이 아니라, 창조 질서 전체가 흔들리는 사건입니다.</p>
+    <p>5-7절에서 본문의 초점이 한 나라로 좁혀집니다. "내 칼이 하늘에서 배부르게 마셨은즉 보라 이것이 에돔 위에 내려오며." 에돔은 야곱의 형제 에서의 후손으로, 이스라엘과 가장 가까우면서도 가장 오래 대적해 온 나라였습니다. 그 심판은 "여호와께서 보스라에서 희생을 내시며 에돔 땅에서 큰 살륙을 행하시니"라는 말로, 마치 제사와도 같은 언어로 묘사됩니다. 심판이 인간의 즉흥적 분노가 아니라, 질서 있고 엄숙한 재판 행위임을 이 이미지가 보여줍니다.</p>
+    <p>8-10절은 그 이유를 다시 한 번 못박습니다. "이는 여호와께서 보복하시는 날이요 시온의 송사를 위하여 신원하시는 해라." 에돔의 멸망은 자의적인 폭력이 아니라, 오랫동안 짓밟혀 온 시온의 억울함을 갚으시는 신원의 행위입니다. 그 심판의 결과는 극단적입니다. "그 시내는 변하여 역청이 되고... 낮에나 밤에나 꺼지지 아니하고 그 연기가 끊임없이 올라가고." 소돔을 연상시키는 이 이미지는 회복이 아니라 영구한 폐허를 말합니다.</p>
+    <p>11-15절은 그 폐허를 하나하나 그려 보입니다. 사람이 떠난 자리를 "당아새와 고슴도치"가 차지하고, "올빼미와 까마귀"가 거하며, 귀족들이 세울 나라가 없어 "그의 궁전에는 가시나무가 나며." 도시를 세우던 자리에 다시 들짐승들이 서로를 부르며 안식할 곳을 얻습니다(14-15절). 인간이 쌓아 올린 질서가 원래의 광야로 되돌려지는 이 장면은, 심판이 단지 벌이 아니라 창조 이전의 무질서로의 되감김임을 보여줍니다.</p>
+    <p>그러나 본문은 공포의 장면에서 끝나지 않고, 16-17절에서 뜻밖의 방향으로 마무리됩니다. "너희는 여호와의 책에서 찾아 읽어보라 이것들이 하나도 빠짐이 없고... 여호와의 입이 이를 명령하셨고 그의 영이 이것들을 모으셨음이라." 무서운 심판의 세부 묘사 뒤에, 본문이 정작 힘주어 말하는 것은 그 모든 것이 하나님의 말씀대로 한 치의 오차도 없이 이루어진다는 사실입니다. 본문의 무게 중심은 결국 파괴의 규모가 아니라, 그 말씀을 하신 분의 신실하심에 있습니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">열방을 향한 우주적 심판에서 마지막 날의 심판으로, 에돔이라는 오랜 원수에게서 하나님 백성을 대적하는 모든 세력의 원형으로, 하늘에서 마신 칼에서 계시록의 심판하시는 기사로, 끝없이 오르는 연기에서 짐승의 나라가 받을 영원한 심판으로, 하나도 빠짐없는 여호와의 책에서 결코 폐하여지지 않는 하나님의 말씀으로—오늘 본문은 한 나라의 멸망 기사를 넘어 하나님의 신실하심 전체를 가리킵니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>34:2 "여호와께서 열방을 향하여 진노하시며" — 한 나라를 넘어선 이 보편적 심판은 "만민을 공의로 심판하실 날을 작정하시고"(행 17:31)로 이어지며, 마지막 날 "죽은 자들이... 자기 행위를 따라 심판을 받고"(계 20:12-13)에서 온 열방을 향한 심판으로 완성됩니다.</span></li>
+      <li><span class="tag">둘째</span><span>34:5-6 "이것이 에돔 위에 내려오며... 보스라에서 큰 살륙을 이루니" — 야곱의 형제이면서도 끝까지 대적한 에돔의 자리는 "내가 야곱은 사랑하고 에서는 미워하였으며"(말 1:2-3), "에돔에 대하여... 그의 형제에게 행한 포악으로 말미암아 부끄러움을 당하고"(옵 1:1, 10)에서 반복되며, 하나님 백성을 대적하는 모든 세력의 대표적 이름이 됩니다.</span></li>
+      <li><span class="tag">셋째</span><span>34:8 "이는 여호와께서 보복하시는 날이요 시온의 송사를 위하여 신원하시는 해라" — 이 "보복의 날"은 "여호와의 은혜의 해와 우리 하나님의 보복의 날을 선포하여"(사 61:2)에서 다시 등장하지만, 예수님은 나사렛 회당에서 이 구절을 읽으실 때 "은혜의 해"까지만 읽으시고 "보복의 날"은 남겨 두심으로(눅 4:18-19), 은혜의 때와 심판의 때 사이에 서 계심을 보이십니다.</span></li>
+      <li><span class="tag">넷째</span><span>34:10 "그 연기가 끊임없이 올라가고 세세에 황무하여" — 꺼지지 않고 오르는 이 연기는 "그 고난의 연기가 세세토록 올라가리로다"(계 14:11), "바벨론이 불붙는 연기가 올라감을 보고"(계 18:9, 19:3)에서 마지막 심판의 확정성을 그대로 잇는 이미지로 반복됩니다.</span></li>
+      <li><span class="tag">다섯째</span><span>34:16 "여호와의 책에서 찾아 읽어보라 이것들이 하나도 빠짐이 없고" — 하나님의 말씀은 단 하나도 어긋남이 없다는 이 확신은 "천지는 없어질지언정 내 말은 없어지지 아니하리라"(마 24:35), "주의 말씀은 영원히 하늘에 굳게 섰사오며"(시 119:89)로 이어지며, 심판이든 회복이든 하나님의 입에서 나온 말씀은 반드시 그대로 이루어짐을 확증합니다.</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 오늘 본문은 한 옛 원수 나라의 멸망을 그리는 지역적 기사가 아니라, 죄를 심판하시는 하나님의 공의가 온 열방과 온 역사를 향해 있음을, 그리고 그 심판과 구원의 말씀이 하나도 빠짐없이 그대로 이루어진다는 사실을 보여줍니다. 에돔에게 내려진 그 확실한 말씀은, 그리스도 안에서 우리에게 주어진 구원의 약속 또한 결코 하나도 빠짐없이 이루어질 것이라는 동일한 신실하심을 가리킵니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>34-35장은 1-33장 전체를 마무리하는 한 쌍의 대조 장으로, 34장(열방과 에돔의 심판)과 35장(광야의 회복)이 심판과 회복을 나란히 배치함.</li>
+        <li>1-4절(우주적 심판 선언)·5-15절(에돔에 대한 구체적 심판)·16-17절(말씀의 확실성 선언)의 세 단락 구조.</li>
+        <li>에돔은 오바댜서·아모스 1:11-12·말라기 1:2-4에도 반복 등장하는, 이스라엘을 대적한 나라의 대표적 이름.</li>
+        <li>5-6절의 "희생"·"살륙" 언어는 헤렘(온전히 바쳐 드림, 진멸)의 관용어로, 심판을 무질서한 폭력이 아니라 엄숙한 재판 행위로 그림.</li>
+        <li>16절 "여호와의 책"은 독자에게 직접 확인을 요청하는 자기 지시적 표현으로, 예언의 신뢰성과 검증 가능성을 강조함.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>이 본문을 읽으며 우리 안에 쉽게 올라오는 것은, 눈앞의 불의를 내 손으로 갚아 주고 싶은 조바심이거나, 심판이 더딘 것을 보며 정의가 영영 이루어지지 않을 것 같은 불안입니다. 그러나 16절은 이 둘 모두를 앞질러 갑니다. 에돔에 대한 심판이 "하나도 빠짐이 없이" 이루어진 것은 사람이 나서서 계산하고 실행했기 때문이 아니라, "여호와의 입이 이를 명령하셨고 그의 영이 이것들을 모으셨"기 때문입니다. 우리의 억울함을 갚는 일도, 우리가 손에 쥐고 지켜야 할 일이 아니라 이미 신실하신 그분의 손과 책에 맡겨진 일입니다.</p>
+    <ul class="apply-list">
+      <li>오늘 내가 스스로 갚아 주고 싶어 붙잡고 있는 억울함이나 상처가 있다면, 그것을 주님의 손에 내려놓습니다.</li>
+      <li>눈에 보이는 불의가 더디게 느껴질 때, "여호와의 책"에 이미 하나도 빠짐없이 기록된 그분의 신실하심을 붙듭니다.</li>
+      <li>심판의 두려움으로 오늘을 살기보다, 이미 그리스도 안에서 나를 위해 마련된 은혜의 확실함으로 오늘을 살아갑니다.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">심판의 연기가 끝없이 오를 때에도, 우리의 신원은 이미 여호와의 책에 하나도 빠짐없이 기록되어 있다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>내가 스스로 갚아 주고 싶어 붙잡고 있는 억울함이나 상처가 있다면, 오늘 그것을 하나님의 손에 내려놓는다는 것은 구체적으로 어떤 모습일까요?</li>
+      <li>"여호와의 책에서 찾아 읽어보라"(34:16)는 말씀처럼, 내 삶에서 하나님 말씀의 신실하심을 다시 확인하고 싶은 부분은 무엇인가요?</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 눈앞의 불의 앞에서 제 힘으로 갚으려는 마음을 내려놓게 하소서. 심판이 더디 보일 때에도 주의 책에 하나도 빠짐없이 기록된 신실하심을 믿게 하시고, 오늘 제 억울함과 두려움을 온전히 주의 손에 맡기게 하소서. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(이사야 34:1–34:17). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
