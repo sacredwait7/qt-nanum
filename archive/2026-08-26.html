@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.08.26 (수)</span>
+      <span class="dot">·</span><span>하나님께로 돌아오는 길</span>
+    </div>
+    <h1 class="ref">메마른 땅이 노래하는 날, 거룩한 대로가 열리다<span class="range">이사야(Isaiah) 35:1–35:10</span></h1>
+    <p class="hook">
+      광야와 메마른 땅이 기뻐하며, 사막이 백합화 같이 피어나리니(35:1–2)<br>
+      약한 손을 강하게 하며, 떨리는 무릎을 굳게 하라(35:3–4)<br>
+      그 때에 소경의 눈이 밝아지고, 저는 자가 사슴 같이 뛰리니(35:5–6)<br>
+      거룩한 길이 거기 있어, 구속함을 받은 자들이 그리로 다니리라(35:8–10).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">어제 34장이 에돔 위에 끝없이 오르는 연기로 끝났다면, 35장은 정반대의 풍경으로 시작합니다. "광야와 메마른 땅이 기뻐하며 사막이 백합화 같이 피어 즐거워하며"(1절). 황폐함의 대명사였던 그 땅이 이제 "레바논의 영광과 갈멜과 사론의 아름다움"을 받습니다(2절). 그리고 이 모든 변화의 목적이 곧바로 밝혀집니다. "그들이 여호와의 영광 곧 우리 하나님의 아름다움을 보리로다." 땅의 회복은 그 자체가 목적이 아니라, 하나님의 영광을 드러내는 무대입니다.</p>
+    <p>3-4절은 그 회복의 소망을 아직 이르지 못한 사람들에게로 돌립니다. "너희는 약한 손을 강하게 하며 떨리는 무릎을 굳게 하며 마음이 급한 자에게 이르기를 굳세어라 두려워하지 말라." 본문이 말을 거는 대상은 강한 자가 아니라 손이 약하고 무릎이 떨리는 자, 마음이 조급하고 두려운 자입니다. 그리고 그 두려움을 잠재우는 근거는 자기 확신이 아니라 오직 하나입니다. "보라 너희 하나님이... 오사 너희를 구하시리라." 힘을 내라는 명령보다 먼저, 하나님이 오신다는 사실이 놓입니다.</p>
+    <p>5-6절은 그 오심의 증거를 구체적으로 나열합니다. "그 때에 소경의 눈이 밝을 것이며 못 듣는 자의 귀가 열릴 것이며 그 때에 저는 자는 사슴 같이 뛸 것이며 말 못하는 자의 혀는 노래하리니." 눈, 귀, 다리, 혀—사람이 스스로 고칠 수 없는 자리마다 하나님의 오심이 닿습니다. 그리고 그 치유는 자연 전체로 번집니다. "이는 광야에서 물이 솟겠고 사막에서 시내가 흐를 것임이라." 사람의 회복과 땅의 회복이 한 사건 안에 함께 묶입니다.</p>
+    <p>7절은 그 변화를 더 밀고 나갑니다. "뜨거운 사막이 변하여 못이 될 것이며 메마른 땅이 변하여 원천이 될 것이며 승냥이의 눕던 곳에 풀과 갈대와 부들이 날 것이며." 가장 메마르고 가장 위험했던 자리—들짐승이 웅크리던 곳—가 생명이 자라는 자리로 바뀝니다. 회복은 변두리에서 멈추지 않고, 가장 황폐했던 중심까지 다다릅니다.</p>
+    <p>8-10절은 이 모든 회복의 결론을 하나의 길로 그려 냅니다. "거기에 대로가 있어 그 길을 거룩한 길이라 일컫는 바 되리니 깨끗하지 못한 자는 지나가지 못하겠고... 우매한 행인은 그 길을 잃지 아니할 것이며." 사자도 사나운 짐승도 그 위에 오르지 못하고, 오직 "구속함을 받은 자들"만 그리로 다닙니다. 그리고 본문은 그 길의 끝을 이렇게 노래합니다. "여호와의 속량함을 받은 자들이 돌아오되 노래하며 시온에 이르러 그들의 머리 위에 영영한 희락을 띠고 기쁨과 즐거움을 얻으리니 슬픔과 탄식이 사라지리로다." 심판의 연기로 끝났던 어제와 달리, 오늘 본문은 슬픔과 탄식이 완전히 사라지는 그 날의 노래로 끝맺습니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">사막에 피어나는 백합화에서 그리스도 안에서 나타난 하나님의 영광으로, 약한 손과 두려운 마음을 향한 부름에서 오실 이를 기다리던 세례 요한에게 주신 응답으로, 열리는 눈과 귀와 뛰는 다리에서 예수님이 친히 행하신 표적으로, 거룩한 대로에서 길 되신 그리스도로, 슬픔과 탄식이 사라지는 시온의 노래에서 계시록의 마지막 약속으로—오늘 본문은 한 폭의 자연 회복 묘사를 넘어, 그리스도의 오심과 마지막 날의 완성을 미리 그려 보입니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>35:2 "그들이 여호와의 영광 곧 우리 하나님의 아름다움을 보리로다" — 땅의 회복을 통해 나타나는 이 영광은 "말씀이 육신이 되어... 우리가 그의 영광을 보니 은혜와 진리가 충만하더라"(요 1:14)에서 그리스도 안에 실제로 나타나며, "우리가 다 수건을 벗은 얼굴로 주의 영광을 보매"(고후 3:18)로 신자의 삶에까지 이어집니다.</span></li>
+      <li><span class="tag">둘째</span><span>35:4 "굳세어라 두려워하지 말라 보라 너희 하나님이... 오사 너희를 구하시리라" — 이 오심의 약속은 옥에 갇혀 흔들리던 세례 요한이 "오실 그이가 당신이오니이까"(마 11:3) 물었을 때, 예수님이 5-6절을 그대로 인용하여 "소경이 보며 못 걷는 사람이 걸으며... 못 듣는 사람이 들으며"(마 11:5)로 응답하신 그 근거가 됩니다.</span></li>
+      <li><span class="tag">셋째</span><span>35:5-6 "소경의 눈이 밝을 것이며... 말 못하는 자의 혀는 노래하리니" — 예언된 이 표적들은 복음서 곳곳에서 문자 그대로 성취됩니다. "말 못하는 사람이 말하고 못 걷는 사람이 걸으며 맹인이 보는 것을 보고"(마 15:31), "귀먹은 사람도 듣게 하고 말 못하는 사람도 말하게 한다"(막 7:37)는 사람들의 놀람이 곧 이 구절의 성취 증언입니다.</span></li>
+      <li><span class="tag">넷째</span><span>35:8 "거기에 대로가 있어 그 길을 거룩한 길이라 일컫는 바 되리니" — 구속함을 받은 자만 다니는 이 유일한 길은 "내가 곧 길이요 진리요 생명이니 나로 말미암지 않고는 아버지께로 올 자가 없느니라"(요 14:6)에서 그리스도 자신으로 인격화되며, "우매한 행인도 길을 잃지 아니한다"는 약속은 연약한 자도 결코 놓치지 않으시는 그 길 되신 분의 성품과 맞닿습니다.</span></li>
+      <li><span class="tag">다섯째</span><span>35:10 "슬픔과 탄식이 사라지리로다" — 시온으로 돌아오는 자들에게 주어진 이 약속은 "모든 눈물을 그 눈에서 닦아 주시니 다시는 사망이 없고 애통하는 것이나 곡하는 것이나 아픈 것이 다시 있지 아니하리니"(계 21:4)에서 온전히 완성되며, 오늘 광야에서 시작된 노래가 마침내 새 하늘과 새 땅에서 끝없는 노래로 이어짐을 보여줍니다.</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 오늘 본문은 자연이 회복되는 목가적 풍경을 그리는 데서 그치지 않고, 약한 손과 두려운 마음을 지닌 자들을 찾아오신 그리스도의 오심과, 그분이 친히 열어 두신 거룩한 길과, 슬픔과 탄식이 완전히 사라질 그 날의 완성을 미리 노래합니다. 어제 에돔 위에 오르던 심판의 연기와 오늘 시온으로 돌아오는 자들의 노래는, 같은 하나님의 말씀이 지닌 두 얼굴—공의와 자비—을 함께 보여줍니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>34장(열방과 에돔의 심판)과 35장(광야의 회복)은 한 쌍의 대조 장으로, 심판 뒤에 반드시 회복이 따른다는 이사야 전체의 패턴을 보여줌.</li>
+        <li>1-2절(땅의 회복)·3-4절(두려운 자를 향한 위로)·5-7절(치유와 물의 회복)·8-10절(거룩한 대로와 시온의 노래)의 네 단락 구조.</li>
+        <li>8절의 "거룩한 길"(히브리어 데레크 하코데쉬)은 성전으로 나아가는 순례길의 이미지를 광야 전체로 확장한 표현.</li>
+        <li>10절 "여호와의 속량함을 받은 자들"의 "속량"(가알)은 값을 치르고 되찾아 오는 친족 구속자의 언어로, 후에 그리스도의 대속 개념의 뿌리가 됨.</li>
+        <li>본문 전체가 미완료·미래형 동사로 일관되어, 아직 이르지 않았으나 반드시 올 것으로 확정된 소망을 문법적으로 강조함.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>이 본문을 읽으며 우리 안에 쉽게 올라오는 생각은, 내 손이 약하고 무릎이 떨리는 지금 상태로는 아직 하나님 앞에 나아갈 자격이 없다는 조바심입니다. 힘을 먼저 회복해야, 두려움을 먼저 이겨내야 비로소 그분이 오신다고 여기는 것입니다. 그러나 본문의 순서는 정반대입니다. 3-4절은 손이 약하고 무릎이 떨리며 마음이 급한 바로 그 상태의 사람에게 말을 겁니다. 그리고 강하게 되라는 명령 뒤에 오는 근거는 우리의 분발이 아니라 "너희 하나님이... 오사 너희를 구하시리라"는 그분의 오심입니다. 눈이 밝아지고 다리가 뛰게 되는 것도, 스스로 고쳐서 자격을 갖춘 뒤가 아니라 그분이 찾아오신 결과로 주어집니다. 은혜는 우리가 강해진 다음에 도착하는 것이 아니라, 우리가 여전히 약할 때 먼저 찾아옵니다.</p>
+    <ul class="apply-list">
+      <li>오늘 내 손이 약하고 마음이 조급하게 느껴지는 그 상태 그대로, 준비되기를 기다리지 않고 주님께 나아갑니다.</li>
+      <li>스스로 강해져야 사랑받을 자격이 생긴다는 생각을 내려놓고, 이미 나를 찾아오신 그분의 은혜를 먼저 붙듭니다.</li>
+      <li>지금 안고 있는 슬픔이나 탄식이 영원하지 않다는 것을 기억하며, 오늘 하루를 그 소망 안에서 살아갑니다.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">그분은 우리가 강해지기를 기다려 오시는 것이 아니라, 약한 손과 떨리는 무릎 그대로에게 찾아오신다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>지금 내 삶에서 "약한 손"과 "떨리는 무릎"처럼 스스로 힘이 없다고 느끼는 부분은 무엇이며, 그 상태 그대로 하나님께 나아간다는 것은 어떤 모습일까요?</li>
+      <li>"슬픔과 탄식이 사라지리로다"(35:10)라는 약속이 아직 완전히 이루어지지 않은 것처럼 느껴지는 삶의 자리가 있다면, 오늘 그 소망을 어떻게 붙들 수 있을까요?</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 강해진 다음에야 주께 나아갈 수 있다고 여기던 마음을 내려놓게 하소서. 약한 손과 떨리는 무릎 그대로 저를 찾아오시는 은혜를 오늘 붙들게 하시고, 슬픔과 탄식이 사라질 그 날의 소망으로 지금 이 하루를 살아가게 하소서. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(이사야 35:1–35:10). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
