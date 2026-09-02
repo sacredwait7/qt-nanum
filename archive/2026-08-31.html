@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 묵상 · 매일성경과 함께</title>
+<style>
+@font-face {
+  font-family: 'DevotionSerif';
+  src: local('Noto Serif KR'), local('Nanum Myeongjo');
+}
+
+:root {
+  --paper: #eff1ee;
+  --paper-raise: #e6e9e4;
+  --ink: #232a2e;
+  --ink-soft: #4b565a;
+  --ink-faint: #7a8488;
+  --accent-gold: #a3721f;
+  --accent-indigo: #46577a;
+  --line: #cfd3cd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14181b;
+    --paper-raise: #1b2024;
+    --ink: #e7e4da;
+    --ink-soft: #a9b0ae;
+    --ink-faint: #6f7876;
+    --accent-gold: #e3ac5c;
+    --accent-indigo: #8c9ec7;
+    --line: #2a3033;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.75;
+}
+
+.page { max-width: 700px; margin: 0 auto; padding: 0 24px 100px; }
+
+.dawn-rule {
+  height: 4px; width: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo) 0%, var(--accent-gold) 100%);
+}
+
+header.sheet { padding: 56px 0 32px; border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap;
+}
+.eyebrow .dot { color: var(--line); }
+
+h1.ref {
+  font-family: 'DevotionSerif', 'Noto Serif KR', 'Nanum Myeongjo', Georgia, serif;
+  font-weight: 600; font-size: clamp(28px, 5vw, 38px); line-height: 1.3;
+  text-wrap: balance; margin: 18px 0 8px; color: var(--ink);
+}
+.ref .range {
+  color: var(--accent-gold); font-weight: 500; font-size: 0.56em; display: block;
+  margin-top: 8px; letter-spacing: 0.01em;
+}
+
+.hook {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif;
+  font-size: 16.5px; font-style: italic; color: var(--ink-soft);
+  line-height: 1.85; margin: 20px 0 0; max-width: 58ch;
+}
+
+section.block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+section.block:last-of-type { border-bottom: none; }
+
+.block-label {
+  display: flex; align-items: center; gap: 10px; font-size: 13px; letter-spacing: 0.1em;
+  color: var(--accent-indigo); font-weight: 600; margin-bottom: 16px;
+}
+.block-label .num {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 15px; color: var(--accent-gold);
+}
+
+section.block p { margin: 0 0 14px; font-size: 16.5px; color: var(--ink); max-width: 64ch; }
+section.block p:last-child { margin-bottom: 0; }
+section.block p.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+.point-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+.point-list li { display: flex; gap: 14px; font-size: 16.5px; max-width: 64ch; }
+.point-list .tag {
+  flex: none; font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 14px;
+  color: var(--accent-gold); padding-top: 1px; min-width: 34px;
+}
+
+.note-box {
+  background: var(--paper-raise); padding: 18px 20px; font-size: 14.5px; color: var(--ink-soft);
+}
+.note-box ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.note-box li::marker { color: var(--accent-indigo); }
+
+.grace-box {
+  background: var(--paper-raise); border-left: 3px solid var(--accent-gold); padding: 18px 20px;
+  margin-top: 6px; font-size: 16px; color: var(--ink-soft);
+}
+
+.apply-list { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.apply-list li { display: flex; gap: 14px; font-size: 16.5px; }
+.apply-list li::before {
+  content: ''; flex: none; width: 6px; height: 6px; margin-top: 9px; border-radius: 50%;
+  background: var(--accent-gold);
+}
+
+.pullquote {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: clamp(19px, 3vw, 23px);
+  line-height: 1.6; color: var(--ink); text-wrap: balance; margin: 0; padding-left: 20px;
+  border-left: 3px solid var(--accent-indigo);
+}
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; display: flex; flex-direction: column; gap: 16px; }
+.questions li {
+  counter-increment: q; display: flex; gap: 14px; font-size: 16.5px; max-width: 62ch;
+}
+.questions li::before {
+  content: counter(q); flex: none; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--accent-gold); color: var(--accent-gold); font-size: 12.5px;
+  display: flex; align-items: center; justify-content: center; font-family: 'DevotionSerif', serif;
+}
+
+.prayer {
+  font-family: 'DevotionSerif', 'Noto Serif KR', serif; font-size: 16px; line-height: 1.9;
+  color: var(--ink-soft); padding: 26px 0 4px;
+}
+
+footer.sheet { padding-top: 32px; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+footer.sheet a { color: var(--accent-indigo); }
+
+.back-nav { font-size: 13px; padding: 20px 0 0; margin: 0; }
+.back-nav a { color: var(--accent-indigo); text-decoration: none; }
+.back-nav a:hover { text-decoration: underline; }
+.back-nav .sep { color: var(--line); margin: 0 8px; }
+
+@media (max-width: 480px) {
+  header.sheet { padding: 40px 0 28px; }
+  section.block { padding: 28px 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="dawn-rule"></div>
+<div class="page">
+
+  <p class="back-nav"><a href="index.html">← 지난 묵상 목록</a><span class="sep">·</span><a href="../index.html">오늘의 묵상 →</a></p>
+
+  <header class="sheet">
+    <div class="eyebrow">
+      <span>매일성경 묵상</span><span class="dot">·</span><span>2026.08.31 (월)</span>
+      <span class="dot">·</span><span>평화 시에 닥친 시험</span>
+    </div>
+    <h1 class="ref">보물창고를 다 열어 보인 왕에게, 그 모든 것이 옮겨질 날을 알리다<span class="range">이사야(Isaiah) 39:1–39:8</span></h1>
+    <p class="hook">
+      므로닥발라단의 사신이 예물을 들고 오니, 히스기야가 기뻐하여 그들을 맞다(39:1–2)<br>
+      은과 금과 향품과 병기고까지, 그의 소유 중에 보이지 않은 것이 없더라(39:2)<br>
+      무엇을 보았느냐 묻는 선지자에게, 내 집에 있는 것을 다 보였나이다 답하다(39:4)<br>
+      여호와의 말씀이 좋으니이다, 내 생전에는 평안함이 있으리로다 하다(39:8).
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="block-label"><span class="num">1</span>복음주의 관점</div>
+    <p class="lede">38장에서 죽을 병에서 나은 히스기야에게, 바벨론 왕 므로닥발라단이 편지와 예물을 보냅니다. 표면적인 이유는 "히스기야가 병들었다가 나았다 함을 들었기" 때문(1절)이지만, 실은 앗수르에 맞설 동맹을 타진하려는 정치적 접촉이었습니다. 본문은 히스기야의 반응을 단 한 마디로 요약합니다. "히스기야가 사자들로 말미암아 기뻐하여"(2절). 그는 그들에게 "은금과 향품과 보배로운 기름과 그의 모든 무기고와 보물고에 있는 것을 다 보이되 궁중의 소유와 그의 온 나라 안에 있는 것을 그들에게 보이지 아니한 것이 없더라"(2절). 위기 앞에서 성전으로 달려갔던 그 왕이, 평안이 찾아오자 자신의 부와 힘을 남에게 드러내는 데 마음을 빼앗깁니다.</p>
+    <p>이사야가 찾아와 묻습니다. "이 사람들이 무슨 말을 하였으며 어디서 왕에게 왔나이까"(3절). 히스기야는 "먼 지방 바벨론에서 내게 왔나이다" 답하고, 이어지는 질문 "그들이 왕궁에서 무엇을 보았나이까"에 이렇게 답합니다. "나의 궁에 있는 것을 그들이 다 보았나이다 나의 창고에 있는 것으로 보이지 아니한 보물이 하나도 없나이다"(4절). 이 대답에는 자기 성찰이 없습니다. 방금 자신이 무슨 일을 했는지조차 제대로 헤아리지 못한 채, 오히려 자랑스러운 어조로 되풀이할 뿐입니다.</p>
+    <p>이사야의 선언이 뒤따릅니다. "만군의 여호와의 말씀을 들으소서 보라 날이 이르리니 네 집에 있는 것과 네 조상들이 오늘까지 쌓아 두었던 것이 모두 바벨론으로 옮긴 바 되고 하나도 남지 아니할 것이라"(5-6절). 심지어 "왕의 몸에서 날 아들 중에서 사로잡혀 바벨론 왕궁의 환관이 되리이다"(7절)라는 말까지 더해집니다. 방금 다른 나라의 사신들에게 자랑삼아 보여준 그 모든 것이, 훗날 바로 그 나라에 의해 남김없이 옮겨지리라는 뒤바뀜입니다.</p>
+    <p>히스기야의 마지막 응답이 이 본문의 무게중심입니다. "왕이 이사야에게 이르되 당신이 전한 여호와의 말씀이 좋소이다 하고 또 이르되 내 생전에는 평안과 안전이 있을 것임이라 하니라"(8절). 겉으로는 순종의 말이지만, 속을 들여다보면 자신의 당대만 무사하면 된다는 좁은 안도입니다. 조롱의 편지를 성전 바닥에 펼쳐 놓고 "천하 만국이 주만이 여호와이신 줄을 알게 하옵소서"(37:20) 부르짖던 그 왕과, "내 생전에는" 이라며 스스로를 위안하는 이 왕이 같은 사람이라는 사실이 본문의 가장 아픈 대목입니다.</p>
+    <p>그럼에도 본문은 심판을 즉시 집행하지 않습니다. "날이 이르리니"(6절)라는 표현과 "네 생전에는"이라는 이사야의 확언(8절 앞부분, 실제로는 왕의 말이지만 이사야가 부인하지 않음) 사이에는, 심판을 늦추시는 하나님의 인내가 자리합니다. 사람의 연약함이 이렇게 드러난 자리에서도, 하나님의 말씀은 곧바로 무너뜨리지 않고 시간을 허락하십니다. 본문이 스스로 남기는 무게는 결국 "여호와의 말씀"(5, 8절)이며, 왕의 정치적 계산이나 순간의 안도감이 아니라 그 말씀이 이 이야기의 중심에 서 있습니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">2</span>하나님의 구속사 관점</div>
+    <p class="lede">헛되이 자랑한 보물에서 그리스도 안에 감추어진 참된 보화로, 처음 언급된 바벨론 유배 예언에서 마침내 임할 새 예루살렘의 소망으로, 환관 된 왕자에서 이방 궁정에서도 신실하게 서신 다니엘로, 자기 생애만을 구한 좁은 평안에서 자기를 비워 백성을 구원하신 참 왕 그리스도로, 심판 직전에 놓인 이사야 1부의 결론에서 곧이어 시작될 위로의 말씀으로—오늘 본문은 한 왕의 실수를 넘어 그리스도 안에서 완성될 구속의 이정표들을 가리킵니다.</p>
+    <ul class="point-list">
+      <li><span class="tag">첫째</span><span>39:2 "그의 모든 무기고와 보물고에 있는 것을 다 보이되" — 남에게 자랑하려 다 드러낸 이 헛된 보물은 "너희는 세상에 보물을 쌓아 두지 말라... 오직 하늘에 보물을 쌓아 두라"(마 6:19-20)는 말씀과 대조되며, 참된 부요는 "그리스도 안에는 지혜와 지식의 모든 보화가 감추어져 있느니라"(골 2:3)에서 드러나는 그리스도 자신에게 있습니다.</span></li>
+      <li><span class="tag">둘째</span><span>39:6 "바벨론으로 옮긴 바 되고" — 이사야서에서 처음으로 명시된 바벨론 포로 예언은 이후 "이 온 땅이 황폐하여... 이 모든 민족이 칠십 년 동안 바벨론의 왕을 섬기리라"(렘 25:11)는 구체적 성취 예고로 이어지고, 궁극적으로 세상 권세의 상징인 바벨론이 무너지고(계 18:2) 하나님의 백성이 새 예루살렘으로 들어가는 소망(계 21:2-3)으로 완성됩니다.</span></li>
+      <li><span class="tag">셋째</span><span>39:7 "사로잡혀 바벨론 왕궁의 환관이 되리이다" — 왕의 후손이 이방 궁정에서 수치를 당하리라는 이 예언은 "다니엘과 하나냐와 미사엘과 아사랴"(단 1:6-7)가 바벨론 왕궁에 사로잡혀 간 사건에서 문자적으로 성취되지만, 그 낮아진 자리에서도 하나님은 다니엘을 세워 이방 왕에게까지 자기 이름을 나타내셨으니, 저주처럼 보이는 자리에서도 신실하게 일하시는 하나님의 섭리를 보여줍니다.</span></li>
+      <li><span class="tag">넷째</span><span>39:8 "내 생전에는 평안과 안전이 있을 것임이라" — 자기 당대의 안위만을 구한 이 좁은 평안은 다윗 왕조 왕들에게 반복된 자기중심적 실패의 한 모습이며, 이와 정반대로 "오히려 자기를 비워 종의 형체를 가지사... 죽기까지 복종하셨으니"(빌 2:7-8) 자기 안전을 스스로 내려놓고 백성을 위해 죽으신 그리스도가 참된 왕의 모습으로 대비됩니다.</span></li>
+      <li><span class="tag">다섯째</span><span>39장은 이사야 1-39장 심판 신탁의 마지막 장으로, 곧바로 이어지는 "너희는 위로하라 내 백성을 위로하라 ... 그 죄악의 용서함을 받았느니라"(사 40:1-2)는 말씀으로 이어지니, 이는 심판이 하나님의 마지막 말씀이 아니라 위로와 회복이 그 뒤를 따른다는 이사야서 전체의 구조이며, 십자가의 심판 뒤에 부활의 위로가 임하는 그리스도의 복음의 패턴을 미리 보여줍니다.</span></li>
+    </ul>
+    <p style="margin-top:18px">그러므로 오늘 본문은 한 왕이 평안한 때에 드러낸 헛된 자랑과 좁은 안도를 그리는 데서 그치지 않고, 참된 보화이신 그리스도와, 포로에서 새 예루살렘으로 이어지는 구속사의 큰 흐름과, 낮은 자리에서도 신실하신 하나님의 섭리와, 자기 안전을 내려놓으신 참 왕의 모습과, 심판 뒤에 반드시 임하는 위로의 약속을 함께 가리킵니다. 히스기야의 보물창고 문이 활짝 열렸던 그 자리는, 오늘도 우리에게 참된 보물이 어디에 있는지를 되묻습니다.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">3</span>주석 노트 (핵심만)</div>
+    <div class="note-box">
+      <ul>
+        <li>39장은 열왕기하 20:12-19과 거의 동일한 병행 본문이며, 사건의 시기상으로는 38장(히스기야의 발병)보다 앞선 주전 703년경으로 추정됨.</li>
+        <li>문학적으로 이사야 1-39장(주로 심판 신탁)의 결론부이자, 40-66장(위로와 회복의 신탁)으로 넘어가는 경첩 역할을 하는 본문.</li>
+        <li>므로닥발라단은 바벨론의 실존 통치자로, 앗수르에 맞서 반복적으로 반란을 일으켰던 역사적 인물(주전 8세기 말 재위).</li>
+        <li>8절의 히브리어 "샬롬"(평안)이 여기서는 언약적 총체적 평화가 아니라 "내 생전에는"이라는 조건으로 축소되어 쓰인 것이 본문의 아이러니를 이룸.</li>
+        <li>36-39장 전체를 통해 히스기야의 신앙이 위기 때(성전으로 나아감)와 평안할 때(자기 과시) 서로 다른 얼굴을 보인다는 균형 잡힌 인물 묘사가 나타남.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">4</span>은혜의 관점으로 적용</div>
+    <p>이 본문 앞에서 우리 마음에 쉽게 올라오는 것은, 평안하고 형편이 나아졌을 때 그것을 누군가에게 보여주고 인정받아야 안심이 된다는 조바심입니다. 히스기야가 사신들에게 창고를 다 열어 보인 것은 결국 자신의 가치와 안전을 소유물로 증명하려던 몸짓이었습니다. 그러나 은혜는 내가 무엇을 쌓았는지, 누구에게 그것을 보여줄 수 있는지에 있지 않습니다. 내가 가진 것을 다 보여주지 않아도, 이미 그리스도 안에서 나의 안전은 확정되어 있다는 사실이 은혜입니다. "내 생전에는 평안하면 된다"는 좁은 안도 대신, 내가 보지 못할 날들까지도 이미 붙들고 계신 하나님을 신뢰하는 것, 그것이 은혜가 주는 더 넓은 평안입니다.</p>
+    <ul class="apply-list">
+      <li>오늘 내가 누군가에게 애써 드러내 보이고 싶은 것이 무엇인지 돌아보고, 나의 안전이 그것에 있지 않음을 인정합니다.</li>
+      <li>"내 생전에만 평안하면 된다"는 좁은 안도 대신, 다음 세대와 이웃의 삶까지 하나님께 맡기는 기도를 오늘 드립니다.</li>
+      <li>순간의 판단 착오와 성찰 없는 자랑까지도 이미 아시고 품어 주시는 하나님의 은혜 안에서, 오늘의 실수를 두려움 없이 인정합니다.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">5</span>마음에 둘 한 문장</div>
+    <p class="pullquote">"내 생전에만 평안하면 족하다"는 좁은 안도 대신, 내가 보지 못할 날들까지 다스리시는 하나님께 오늘을 맡기라.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-label"><span class="num">6</span>함께 나눌 질문</div>
+    <ul class="questions">
+      <li>히스기야는 위기(37장) 앞에서는 하나님 앞에 엎드렸지만, 평안(39장)이 찾아오자 자신을 드러내는 데 마음을 빼앗겼습니다. 나는 신앙이 언제 더 쉽게 느슨해지나요 - 어려울 때인가요, 평안할 때인가요?</li>
+      <li>"내 생전에는 평안이 있으리라"(8절)는 히스기야의 말에서, 나의 기도와 관심이 나의 당대와 나의 문제에만 머물러 있지는 않은지 - 다음 세대나 더 넓은 하나님 나라를 위해 오늘 내가 구할 기도는 무엇인가요?</li>
+    </ul>
+  </section>
+
+  <p class="prayer">
+    주님, 평안한 날에 오히려 자랑하고 싶어지는 제 마음을 살펴 주소서. 가진 것을 드러내기보다 주께서 베풀어 주신 은혜를 기억하게 하시고, 제 생애만이 아니라 다음 세대와 주의 나라 전체를 향한 마음을 품게 하소서. 예수님의 이름으로 기도합니다. 아멘.
+  </p>
+
+  <footer class="sheet">
+    본문 전문은 각자 성경앱으로 함께 읽어요. 성경 본문·타 해설 저작권 보호를 위해 구절 표기만 하였습니다. 오늘의 본문 참조는 <a href="https://sum.su.or.kr:8888" target="_blank" rel="noopener">성서유니온 &lt;매일성경&gt;</a> 묵상일정을 따릅니다(이사야 39:1–39:8). 위 글은 원 해설을 인용하지 않고 새로 작성한 개인·공동체 나눔용 묵상입니다.
+  </footer>
+
+</div>
+</body>
+</html>
